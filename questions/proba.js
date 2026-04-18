@@ -183,9 +183,9 @@ const QUESTIONS_PROBA = [
     bonneReponse: function(v) { return '$ '+ v.p1*v.p2/100  + '$'; },
     distracteurs: function(v) {
       return [
-        '$ '+ (v.p1+v.p2)/100  + '$',
-        '$ '+ v.p2/100  + '$',
-        '$ '+ v.p1/100  + '$',
+        '$ '+ (v.p1+v.p2)/10  + '$',
+        '$ '+ v.p2/10  + '$',
+        '$ '+ v.p1/10  + '$',
       ];
     }
   },
@@ -225,9 +225,9 @@ const QUESTIONS_PROBA = [
     bonneReponse: function(v) { return '$ '+ (v.p1*v.p2 +(10-v.p1)*v.p3)/100  + '$'; },
     distracteurs: function(v) {
       return [
-        '$ '+ (v.p3+v.p2)/100  + '$',
-        '$ '+ v.p2/100  + '$',
-        '$ '+ v.p3/100  + '$',
+        '$ '+ (v.p3*v.p2)/100  + '$',
+        '$ '+ v.p2/10  + '$',
+        '$ '+ v.p3/10  + '$',
       ];
     }
   },
@@ -268,9 +268,9 @@ const QUESTIONS_PROBA = [
     bonneReponse: function(v) { return '$ '+ (v.p1*v.p2 +(10-v.p1)*v.p3)/100  + '$'; },
     distracteurs: function(v) {
       return [
-        '$ '+ (v.p3+v.p2)/100  + '$',
-        '$ '+ v.p2/100  + '$',
-        '$ '+ v.p3/100  + '$',
+        '$ '+ (v.p3*v.p2)/100  + '$',
+        '$ '+ v.p2/10  + '$',
+        '$ '+ v.p3/10  + '$',
       ];
     }
   },
