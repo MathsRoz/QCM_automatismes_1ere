@@ -121,7 +121,7 @@ const QUESTIONS_PROBA = [
 
   // ── Distinguer P(A∩B), PA(B), PB(A) ── done
   {
-    id: "proba_007", theme: "proba",
+    id: "proba_007", theme: "proba", groupe: "conditionnelles",
     niveau: ["specifique", "specialite"], cols: 4,
     variables: { p: { min: 2, max: 8 } },
     enonce: (v) => `$P(A \\cap B) = \\dfrac{${v.p}}{100}$ et $P(B) = \\dfrac{${v.p * 4}}{100}$. Calculer $P_B(A)$`,
@@ -294,9 +294,9 @@ const QUESTIONS_PROBA = [
   },
 
   {
-    id: "proba_012", theme: "proba",
+    id: "proba_012", theme: "proba",groupe: "conditionnelles",
     niveau: ["specifique", "specialite"], cols: 4,
-    variables: { p: { values :[5,10,20,25] },
+    variables: { p: { values :[5,10,20,25,30,15] },
                 a:{min:2,max:4},
               s: {min:400, max:1000, step:200} },
 
@@ -337,4 +337,56 @@ const QUESTIONS_PROBA = [
     ]}
   },
 
+  {
+    id: "proba_013", theme: "proba",groupe:"proba_totale",
+    niveau: ["specialite"], cols: 4,
+    variables: { p1: { min: 1, max: 9 }, p2: { min: 1, max: 9 }, p3: { min: 1, max: 9 } },
+    enonce: function(v) {
+     
+      // Pendant dedupeAnswers, on calcule juste _y0 — pas de SVG
+      if (v._deduping) return '';
+      
+
+      var svg = Fig.svg(0, 7, -2.5, 2.5)
+        .arbre()
+        .text(7/4,3/4+.3,'0,'+v.p1)
+        // .text(7/4,-3/4-.3,'0,'+(10-v.p1))
+        .text(7*3/4,-3/4+.2,'0,'+v.p3)
+        .text(7*3/4,-2,'0,'+(10-v.p3))
+        // .text(7*3/4,+3/4-.2,'0,'+(10-v.p2))
+        // .text(7*3/4,+2,'0,'+v.p2)
+        .end();
+
+      var tikz = Fig.latex(0, 8, -3, 3)
+        .arbre().text(8/4,3/4+.5,'0,'+v.p1)
+        // .text(8/4,-3/4-.5,'0,'+(10-v.p1))
+        .text(8*3/4,-.8,'0,'+v.p3)
+        .text(8*3/4,-2.3,'0,'+(10-v.p3))
+        // .text(8*3/4,.7,'0,'+(10-v.p2))
+        // .text(8*3/4,2.2,'0,'+v.p2)
+        .end();
+
+      return 'On donne l\'arbre de probabilité ci-contre. '
+           + '%%SVG' + svg + '%%ENDSVG%%%%TIKZ' + tikz + '%%ENDTIKZ%%'
+           + 'Si $P(B)='+ Math.round((v.p1*v.p2/100+(10-v.p1)*v.p3/100)*100)/100 + '$  alors $P(A\\cap B)$ est égale à :';
+    },
+    bonneReponse: function(v) { return '$ '+ v.p1*v.p2/100 + '$'; },
+    distracteurs: function(v) {
+      return [
+        '$ '+ (v.p1*v.p3)/100  + '$',
+        '$ '+ v.p1/10  + '$',
+        '$ '+ v.p3/10  + '$',
+      ];
+    }
+  },
+
+
+  {
+    id: "prob_014", theme: 'proba', groupe: "conditionnelles",
+    niveau: ["specialite"], cols: 4,
+    variables: { pA: { min: 1, max: 9 }, pBs: { min: 1, max: 9 } }, // pA en dixièmes
+    enonce: (v) => `On donne $P(A) = ${v.pA/10}$ et $P(A \\cap B) = ${v.pBs*v.pA/100}$. Calculer $P_A(B)$.`,
+    bonneReponse: (v) => `$${v.pBs/10}$`,
+    distracteurs: (v) => [`$${v.pA * (10-v.pBs)/100}$`, `$${v.pA*v.pA * (v.pBs)/1000}$`, `$${(1/v.pA).toFixed(2)}$`]
+  },
 ];

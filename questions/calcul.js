@@ -256,8 +256,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Équation produit nul ── done
   {
-    id: "calc_015", theme: "calcul",
-    niveau: ["specifique", "specialite"], cols: 2,
+    id: "calc_015", theme: "calcul", groupe: 'equation',
+    niveau: ["techno", "specifique", "specialite"], cols: 2,
     variables: { a: { min: 1, max: 8 }, b: { min: 1, max: 8 } },
     enonce: (v) => `Résoudre $(x - ${v.a})(x + ${v.b}) = 0$`,
     bonneReponse: (v) => `$x = ${v.a}$ ou $x = -${v.b}$`,
@@ -266,6 +266,16 @@ const QUESTIONS_CALCUL = [
       `$x = ${v.a}$ ou $x = ${v.b}$`,
       `$x = -${v.a}$ ou $x = -${v.b}$`
     ]
+  },
+
+  {
+    id: "cal_015b", theme: 'calcul', groupe: "équation",
+    niveau: ["techno", "specifique", "specialite"], cols: 2,
+    variables: { a: { min: 1, max: 5 }, b: { min: 6, max: 12 } },
+    enonce: (v) => `Résoudre l'équation $\\dfrac{x + ${v.a}}{x - ${v.b}} = 0$`,
+    bonneReponse: (v) => `$x = -${v.a}$`,
+
+    distracteurs: (v) => [`$x = ${v.b}$`, `$x = -${v.a}$ ou $x=${v.b}$`, `$x = ${v.b - v.a}$`]
   },
 
   // ── Signe d'une expression du 1er degré ── done

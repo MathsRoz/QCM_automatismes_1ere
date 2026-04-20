@@ -54,6 +54,9 @@ const QUESTIONS_NON_REPERTORIEES = [
     }
   },
 
+
+  
+
 ]
 
   // ── Helper : génère la réponse SVG+TikZ pour fonc_016 ──
