@@ -282,6 +282,7 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   font-family: var(--mono); font-size: 12px; line-height: 1.8;
   max-height: 400px; overflow-y: auto; margin-bottom: 16px;
   white-space: pre; tab-size: 2;
+  color: rgb(230, 230, 230);
 }
 .lt-cmd     { color: #d4af6e; }
 .lt-env     { color: #5eb88a; }
@@ -597,8 +598,8 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
     </div>
     <div class="latex-preview" id="latexPreview"></div>
     <div class="export-btns">
-      <button class="btn btn-blue" onclick="downloadTex()">⬇️ Télécharger le .tex</button>
-      <button class="btn btn-green" onclick="compilePDF()">📃 Compiler en PDF</button>
+      <button class="btn" onclick="downloadTex()">⬇️ Télécharger le .tex</button>
+      <button class="btn" onclick="compilePDF()">📃 Compiler en PDF</button>
     </div>
   </div>
 </main>
@@ -1128,7 +1129,7 @@ function toggleThemeMode() {
   // Activer les transitions seulement au moment du basculement
   document.body.classList.add('theme-transitioning');
   const isLight = document.body.classList.toggle('light');
-  document.getElementById('themeToggle').textContent = isLight ? '🌞' : '🌙';
+  document.getElementById('themeToggle').textContent = isLight ? '☀️' : '🌙';
   localStorage.setItem('theme', isLight ? 'light' : 'dark');
   // Retirer après la transition
   setTimeout(() => document.body.classList.remove('theme-transitioning'), 300);
@@ -1140,7 +1141,7 @@ function toggleThemeMode() {
     document.body.classList.add('light');
     document.addEventListener('DOMContentLoaded', () => {
       const btn = document.getElementById('themeToggle');
-      if (btn) btn.textContent = '🌞';
+      if (btn) btn.textContent = '☀️';
     });
   }
 })();
