@@ -40,7 +40,7 @@
 
 /* ── Thème clair ──────────────────────────────────────── */
 body.light {
-  --bg:      rgb(211, 211, 211);
+  --bg:      rgb(226, 226, 226);
   --card:    rgb(255, 255, 255);
   --card2:   rgb(241, 241, 241);
 
@@ -68,9 +68,6 @@ body.light {
   --autre:   #3a8a08;
 }
 
-body.light::before {
-  background: linear-gradient(var(--bg), rgb(255, 255, 255) 0%, transparent 60%);
-}
 
 /* Transition douce au changement de thème */
 .theme-transitioning,
@@ -152,7 +149,7 @@ header {
 /* ─── GENERIC BUTTONS ─── */
 .btn {
   display: inline-flex; align-items: center; gap: 7px;
-  padding: 9px 18px; border-radius: 99px;
+  padding: 9px 15px; border-radius: 99px;
   font-family: var(--sans); font-size: 13px; font-weight: 500;
   cursor: pointer; transition: all 0.2s; border: 0px solid var(--border2);
   background: var(--card); color: var(--text2);

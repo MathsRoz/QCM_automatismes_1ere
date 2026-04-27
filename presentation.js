@@ -11,6 +11,7 @@ const pres = {
   idx: 0,
   showCorr: false,
   answers: {},
+  btncor:false,
 };
 
 function openPresentation(questions) {
@@ -61,12 +62,12 @@ function renderPresSlide() {
     <div class="pres-nav">
       <button class="pres-btn pres-corr-btn${pres.showCorr ? ' on' : ''}"
         onclick="togglePresCorr()">
-        ${pres.showCorr ? '🙈 Masquer' : '👁️ Corrigé'}
+        ${pres.btncor ? '🙈 Masquer' : '👁️ Corrigé'}
       </button>
       <button class="pres-btn pres-btn-prev" onclick="presGo(-1)"
         ${pres.idx === 0 ? 'disabled' : ''}> Précédente</button>
       <button class="pres-btn pres-btn-next" onclick="presGo(1)">
-        ${pres.idx === n - 1 ? 'Terminer' : 'Suivante'}
+        ${ pres.idx === n - 1 ? 'Terminer' : 'Suivante'}
       </button>
       <button class="pres-btn pres-btn-close" onclick="closePresentation()" title="Fermer">✕</button>
     </div>`;
@@ -144,11 +145,20 @@ function renderPresSlide() {
 function presGo(dir) {
   const n = pres.questions.length;
   const newIdx = pres.idx + dir;
-  pres.showCorr = false;
+  if (pres.btncor && !pres.showCorr && dir>0){
+    pres.showCorr = !pres.showCorr;
+    updatePresSelection();
+  }
+  else{
+    if (pres.btncor && dir>0 ){
+  pres.showCorr = !pres.showCorr;}
+    if (dir<0 && pres.showCorr){
+      pres.showCorr = !pres.showCorr;
+    }
   if (newIdx < 0) return;
   if (newIdx >= n) { closePresentation(); return; }
   pres.idx = newIdx;
-  renderPresSlide();
+  renderPresSlide();}
 }
 
 // Met à jour uniquement les classes sans reconstruire le DOM
@@ -171,11 +181,10 @@ function updatePresSelection() {
 }
 
 function togglePresCorr() {
-  pres.showCorr = !pres.showCorr;
+  pres.btncor = !pres.btncor;
   const corrBtn = document.querySelector('.pres-corr-btn');
   if (corrBtn) {
-    corrBtn.textContent = pres.showCorr ? '🙈 Masquer' : '👁️ Corrigé';
-    corrBtn.classList.toggle('on', pres.showCorr);
+    corrBtn.textContent = pres.btncor ? '🙈 Masquer' : '👁️ Corrigé';
   }
   updatePresSelection();
 }

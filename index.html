@@ -49,7 +49,7 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
   background: var(--card); border: 2px solid var(--border2);border-color: var(--card); 
   border-radius: var(--radius); padding: 18px 20px;
   cursor: pointer; position: relative; overflow: hidden;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.103);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
   transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
 }
 .theme-card::after {
@@ -60,7 +60,7 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
 }
 .theme-card:hover {  transform: translateY(-2px); }
 .theme-card:hover::after { transform: scaleX(1); }
-.theme-card.selected { border: 2px solid var(--border2); border-color: var(--accent, var(--blue)); background: var(--card2); }
+.theme-card.selected { border: 2px solid var(--border2); border-color: var(--accent, var(--blue)); }
 .theme-card.selected::after { transform: scaleX(1); }
 .theme-icon {
   width: 36px; height: 36px; border-radius: 9px;
@@ -91,7 +91,7 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
   padding: 9px 20px; border-radius: 99px; border: 2px solid var(--card);
   background: var(--card); color: var(--text2);
   font-family: var(--sans); font-size: 13px; font-weight: 500;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.103);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
   cursor: pointer; transition: all 0.25s;
 }
 .level-btn:hover { border-color: rgba(255,255,255,0.12); color: var(--text);transform: translateY(-2px);}
@@ -146,7 +146,7 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
 .slider-card {
   background: var(--card); border: 0px solid var(--border2);
   border-radius: var(--radius); padding: 20px 22px; margin-bottom: 28px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.103);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
 }
 .slider-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 18px; }
 .slider-title { font-size: 14px; font-weight: 600; }
@@ -178,7 +178,7 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   border: none; color: var(--bg);
   font-family: var(--sans); font-size: 15px; font-weight: 600;
   cursor: pointer; position: relative; overflow: hidden;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.103);
+ box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
   transition: all 0.25s; letter-spacing: -0.2px;
 }
 
@@ -204,7 +204,7 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .question-card {
   background: var(--card); border: 0px solid var(--border2);
   border-radius: var(--radius); padding: 22px 24px; margin-bottom: 14px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.103);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
   transition: border-color 0.2s;
 }
 .q-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
@@ -221,7 +221,7 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   padding: 10px 14px; border-radius: var(--radius2);
   border: 2px solid var(--card2); background: var(--card2);
   cursor: pointer; transition: all 0.2s; text-align: left;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.103);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
   font-family: var(--sans); font-size: 13px; color: var(--text); width: 100%;
 }
 .answer-letter {
@@ -533,11 +533,11 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
     </div>
     <div class="preview-actions">
       <button class="btn" onclick="goToView('config')">⬅️ Reconfigurer</button>
-      <button class="btn btn-blue" onclick="regenerate()">🔄 Régénérer</button>
-      <button class="btn btn-green" id="btnSubmit" onclick="submitQCM()">✅ Soumettre</button>
-      <button class="btn" id="btnCorrect" onclick="toggleCorrection()">👁️ Afficher le corrigé</button>
+      <button class="btn " onclick="regenerate()">🔄 Régénérer</button>
+      <button class="btn " id="btnSubmit" onclick="submitQCM()">✅ Corriger</button>
+      <!-- <button class="btn" id="btnCorrect" onclick="toggleCorrection()">👁️ Afficher le corrigé</button> -->
       <button class="btn" onclick="startPresentation()">🖥️ Présentation</button>
-      <button class="btn btn-blue" onclick="goToView('export')">📄 Exporter</button>
+      <button class="btn " onclick="goToView('export')">📄 Exporter</button>
     </div>
     <div id="scoreBar" style="display:none" class="score-bar">
       <div class="score-num" id="scoreNum">—</div>
@@ -817,7 +817,7 @@ function renderPreview() {
     `<div class="meta-badge meta-seed"  title="Cliquer pour afficher le QRcode" onclick="openQRCode()">qrcode</div>`;
   document.getElementById('scoreBar').style.display = 'none';
   document.getElementById('btnSubmit').style.display = '';
-  document.getElementById('btnCorrect').textContent = '👁️ Afficher le corrigé';
+  // document.getElementById('btnCorrect').textContent = '👁️ Afficher le corrigé';
 
   const container = document.getElementById('questionsContainer');
   container.innerHTML = '';
@@ -958,25 +958,25 @@ function submitQCM() {
   document.getElementById('btnSubmit').style.display = 'none';
   setTimeout(()=>{ if(window.renderMathInElement) renderMathInElement(document.body,{delimiters:[{left: '$$', right: '$$', display: true},{left:'$',right:'$',display:false}],throwOnError:false}); },80);
 }
-function toggleCorrection() {
-  state.showCorrection = !state.showCorrection;
-  document.getElementById('btnCorrect').textContent = state.showCorrection ? '🙈 Masquer le corrigé' : '👁️ Afficher le corrigé';
-  state.generatedQuestions.forEach((q,qi) => {
-    const sel = state.userAnswers[qi];
-    document.getElementById('answers_'+qi).querySelectorAll('.answer-btn').forEach((btn,ri) => {
-      btn.classList.remove('selected','correct','wrong');
-      if (state.showCorrection) {
-        const isCorrect = q.reponses[ri] === q.bonneReponse;
-        const isSelected = ri === sel;
-        if (isCorrect) btn.classList.add('correct');
-        if (!isCorrect && isSelected) btn.classList.add('wrong');
-      } else {
-        if (ri === sel) btn.classList.add('selected');
-      }
-    });
-  });
-  setTimeout(()=>{ if(window.renderMathInElement) renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false}); },200);
-}
+// function toggleCorrection() {
+//   state.showCorrection = !state.showCorrection;
+//   document.getElementById('btnCorrect').textContent = state.showCorrection ? '🙈 Masquer le corrigé' : '👁️ Afficher le corrigé';
+//   state.generatedQuestions.forEach((q,qi) => {
+//     const sel = state.userAnswers[qi];
+//     document.getElementById('answers_'+qi).querySelectorAll('.answer-btn').forEach((btn,ri) => {
+//       btn.classList.remove('selected','correct','wrong');
+//       if (state.showCorrection) {
+//         const isCorrect = q.reponses[ri] === q.bonneReponse;
+//         const isSelected = ri === sel;
+//         if (isCorrect) btn.classList.add('correct');
+//         if (!isCorrect && isSelected) btn.classList.add('wrong');
+//       } else {
+//         if (ri === sel) btn.classList.add('selected');
+//       }
+//     });
+//   });
+//   setTimeout(()=>{ if(window.renderMathInElement) renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false}); },200);
+// }
 
 // ═══════════════════════════════════════════════════════
 //  EXPORT LATEX

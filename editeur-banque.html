@@ -60,7 +60,8 @@ header {
 
 .filter-row { display:flex; gap:6px; flex-wrap:wrap; }
 .filter-btn {
-  padding:4px 10px; border-radius:99px; border:1px solid var(--border2);
+  
+  padding:4px 10px; border-radius:5px; border:1px solid var(--border2);
   background:transparent; color:var(--text3);
   font-family:var(--sans); font-size:11px; cursor:pointer; transition:all .2s;
 }
@@ -74,7 +75,7 @@ header {
 .filter-btn[data-theme="stats"].active       { background:rgba(248,113,113,.1); color:var(--red); border-color:var(--red); }
 .filter-btn[data-theme="proba"].active       { background:rgba(56,189,248,.1); color:var(--cyan); border-color:var(--cyan); }
 .filter-btn[data-theme="figures"].active     { background:rgba(167,139,250,.1); color:var(--pur); border-color:var(--pur); }
-.filter-btn[data-theme="Non répertoriées"].active     { background:rgba(127, 219, 127, 0.1); color:var(--autre); color:var(--autre); }
+.filter-btn[data-theme="Non répertoriées"].active     { background:rgba(127, 219, 127, 0.1); color:var(--autre); border-color:var(--pur);}
 
 .q-list { flex:1; overflow-y:auto; padding:8px; }
 .q-item {
