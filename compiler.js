@@ -6,12 +6,12 @@
 // ── Préambule LaTeX commun ──────────────────────────────
 const LATEX_PREAMBLE_ARTICLE =
     '\\documentclass[12pt,a4paper]{article}\n'
-  + '\\usepackage[dvipsnames]{xcolor}\\definecolor{correct}{RGB}{16,185,129}\n'
   + '\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage[french]{babel}\n'
   + '\\usepackage[upright]{fourier}\n'
   + '\\usepackage{amsmath,amssymb}\\usepackage{multicol}\\usepackage{enumitem}\n'
   + '\\usepackage{tikz}\n\\usetikzlibrary{arrows.meta,calc,trees}\n'
-  + '\\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}\n';
+  + '\\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}\n'
+  + '\\usepackage[dvipsnames]{xcolor}\\definecolor{correct}{RGB}{16,185,129}\n';
 
 const LATEX_PREAMBLE_BEAMER = (theme, color) =>
     '\\documentclass{beamer}\n'

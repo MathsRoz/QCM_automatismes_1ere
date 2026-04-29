@@ -1,8 +1,8 @@
 
 :root {
   /* Fonds */
-  --bg:      rgb(11, 17, 32);        
-  --card:    rgb(19,29,48);     
+  --bg:      rgb(19,29,48);         
+  --card:    rgb(33, 42, 60);    
   --card2:   rgb(33, 42, 60);        
 
   /* Borders */
@@ -31,6 +31,7 @@
   --cyan : #88dfda;
   --yellow : #f59e0b;
   --autre : #8fe953;
+  --hr : #969aa1;
 
   --mono:   'DM Mono', monospace;
   --sans:   'DM Sans', sans-serif;
@@ -40,8 +41,8 @@
 
 /* ── Thème clair ──────────────────────────────────────── */
 body.light {
-  --bg:      rgb(226, 226, 226);
-  --card:    rgb(255, 255, 255);
+  --bg:      rgb(255, 249, 240);
+  --card:    rgb(255, 249, 240);
   --card2:   rgb(241, 241, 241);
 
   --border:  rgba(235, 241, 248, 0.15);
@@ -50,6 +51,8 @@ body.light {
   --accent:  #63a1b4;
   --accent2: #6395ac;
   --accentL: rgba(54, 73, 128, 0.15);
+
+  --hr : #afa19e;
 
   --text:    #0c121b;
   --text2:   #25303f;
@@ -66,7 +69,10 @@ body.light {
   --cyan:    #0a8080;
   --yellow:  #906800;
   --autre:   #3a8a08;
+
+
 }
+
 
 
 /* Transition douce au changement de thème */
@@ -88,8 +94,7 @@ body {
 body::before {
   content: '';
   position: fixed; inset: 0;
-  background:
-    linear-gradient( var(--bg),rgba(91, 114, 163, 0.199) 20, transparent 60%);
+  background:var(--bg);
   pointer-events: none; z-index: 0;
 }
 ::-webkit-scrollbar { width: 5px; }
@@ -178,3 +183,7 @@ header {
 /* ─── FIGURES ─── */
 .fig-wrap { display: flex; justify-content: center; margin: 3px 0; }
 .fig-wrap svg { max-width: 100%; height: auto; border-radius: 6px; overflow: visible; }
+
+hr.solid {
+  border: .5px solid var(--hr);
+}
