@@ -84,7 +84,16 @@ var Fig = {
       + '<rect x="' + f._px(xmin) + '" y="' + f._py(ymax)
       + '" width="' + ((xmax - xmin) * sc) + '" height="' + ((ymax - ymin) * sc) + '"/>'
       + '</clipPath>'
-      + '</defs>';
+      + '</defs>'
+      + '<style>'
+      + 'text {'
+      /* Specify the system or custom font to use */
+      + 'font-family: "Playpen Sans Arabic", sans-serif;'
+      + 'font-size:10pt;'
+
+      /* Add other styling */
+    +'}'
+  + '</style>;'
     return f;
   },
 
@@ -173,10 +182,10 @@ var Fig = {
         + '" stroke="' + TC.axis + '" stroke-width="1.8" marker-end="url(#' + aid + ')"/>'
       // label x
       + '<text x="' + (this._px(xmax)+4) + '" y="' + (oy -10)
-        + '" fill="' + TC.axis + '" font-size="' + (fs + 2) + '" font-style="italic">x</text>'
+        + '" fill="' + TC.axis + '" font-size="' + (fs + 2) + ' ">x</text>'
       // label y
       + '<text x="' + (ox +10) + '" y="' + (this._py(ymax) - 4)
-        + '" fill="' + TC.axis + '" font-size="' + (fs + 2) + '" font-style="italic">y</text>'
+        + '" fill="' + TC.axis + '" font-size="' + (fs + 2) + ' ">y</text>'
       // O
       + '<text x="' + (ox - 4) + '" y="' + (oy + fs + 2)
         + '" fill="' + TC.dim + '" font-size="' + fs + '" text-anchor="end">O</text>';
@@ -334,7 +343,7 @@ var Fig = {
  
     return this._add(
       '<text x="' + this._px(x) + '" y="' + (this._py(y)) + '"'
-        + ' fill="' + col + '" font-size="' + fs + '" font-weight="bold"'
+        + ' fill="' + col + '" font-size="' + fs + '" font-weight=500'
         + ' text-anchor="' + anch + '" dominant-baseline="central">' + svgContent + '</text>',
       '\\node[' +  'font=\\small,' + color +','+ tikzAnch +'] at (' + x + ',' + y + '){$' + tikzContent + '$};\n'
     );

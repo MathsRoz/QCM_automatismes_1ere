@@ -16,7 +16,8 @@
 <title>QCM Mathématiques — Première</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playpen+Sans+Arabic:wght@100..800&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
@@ -49,7 +50,7 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
   background: var(--card); border: 2px solid var(--border2);border-color: var(--card); 
   border-radius: var(--radius); padding: 18px 20px;
   cursor: pointer; position: relative; overflow: hidden;
-  /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.103); */
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
   transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
 }
 .theme-card::after {
@@ -60,7 +61,7 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
 }
 .theme-card:hover {  transform: translateY(-2px); }
 .theme-card:hover::after { transform: scaleX(1); }
-.theme-card.selected { border: 2px solid var(--border2); border-color: var(--accent, var(--blue)); background: var(--card2); }
+.theme-card.selected { border: 2px solid var(--border2); border-color: var(--accent, var(--blue)); }
 .theme-card.selected::after { transform: scaleX(1); }
 .theme-icon {
   width: 36px; height: 36px; border-radius: 9px;
@@ -70,18 +71,6 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
 }
 .theme-name { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
 .theme-desc { font-size: 12px; color: var(--text2); line-height: 1.4; }
-.theme-check {
-  position: absolute; top: 12px; right: 14px;
-  width: 22px; height: 22px; border-radius: 50%;
-  background: var(--accent, var(--blue));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; opacity: 0;
-  color:var(--card);
-  font-weight: 800;
-  transform: scale(0.5) rotate(-45deg);
-  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-}
-.theme-card.selected .theme-check { opacity: 1; transform: scale(1) rotate(0deg); }
 
 /* ─── LEVEL BUTTONS ─── */
 .level-section { margin-bottom: 28px; }
@@ -91,7 +80,7 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
   padding: 9px 20px; border-radius: 99px; border: 2px solid var(--card);
   background: var(--card); color: var(--text2);
   font-family: var(--sans); font-size: 13px; font-weight: 500;
-  /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.103); */
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
   cursor: pointer; transition: all 0.25s;
 }
 .level-btn:hover { border-color: rgba(255,255,255,0.12); color: var(--text);transform: translateY(-2px);}
@@ -106,14 +95,15 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
 .toggle {
   width: 44px; height: 24px; border-radius: 99px;
   background: var(--card2); border: 0px solid var(--border2);
+  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.226);
   position: relative; cursor: pointer; transition: background 0.25s; flex-shrink: 0;
 }
-.toggle.on { background: var(--blue2); border-color: var(--blue); }
+.toggle.on { background: var(--accent);  }
 .toggle::after {
   content: ''; position: absolute; top: 3px; left: 3px;
-  width: 16px; height: 16px; border-radius: 50%; background: #eff2f3;
+  width: 16px; height: 16px; border-radius: 50%; background: #ffffff;
   transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
-  /* box-shadow: 0 1px 4px rgba(0,0,0,0.3); */
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 .toggle.on::after { transform: translateX(20px); }
 .toggle-label { font-size: 13px; font-weight: 500; }
@@ -122,6 +112,7 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
   background: var(--card2); border: 0px solid var(--border2);
   border-radius: 99px; padding: 4px 11px; font-family: var(--mono);
   transition: all 0.25s;
+  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.226);
 }
 .tooltip-wrap { position: relative; display: inline-block; }
 .tooltip-icon {
@@ -129,6 +120,7 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
   background: var(--card2); border: 0px solid var(--border2);
   display: flex; align-items: center; justify-content: center;
   font-size: 10px; color: var(--text3); cursor: help;
+  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.226);
 }
 .tooltip-box {
   position: absolute; bottom: calc(100% + 8px); left: 50%;
@@ -146,14 +138,14 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
 .slider-card {
   background: var(--card); border: 0px solid var(--border2);
   border-radius: var(--radius); padding: 20px 22px; margin-bottom: 28px;
-  /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.103); */
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
 }
 .slider-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 18px; }
 .slider-title { font-size: 14px; font-weight: 600; }
 .slider-sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
 .slider-num {
   font-family: var(--mono); font-size: 22px; font-weight: 500;
-  color: var(--blue); border: none; background: transparent;
+  color: var(--accent); border: none; background: transparent;
   width: 50px; text-align: right; outline: none;
 }
 input[type=range] {
@@ -164,7 +156,7 @@ input[type=range] {
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none; appearance: none;
   width: 18px; height: 18px; border-radius: 50%;
-  background: var(--blue); cursor: pointer;
+  background: var(--accent); cursor: pointer;
   
   transition: transform 0.2s;
 }
@@ -174,11 +166,11 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .btn-generate {
   display: block; width: 100%;
   padding: 14px; border-radius: 99px;
-  background: var(--blue);
+  background: var(--accent);
   border: none; color: var(--bg);
   font-family: var(--sans); font-size: 15px; font-weight: 600;
   cursor: pointer; position: relative; overflow: hidden;
-  /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.103); */
+ box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
   transition: all 0.25s; letter-spacing: -0.2px;
 }
 
@@ -199,19 +191,19 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .meta-gray   { border-color: var(--border2); color: var(--text3); }
 .meta-seed {color:var(--amber);cursor:pointer; transition: 0.2s;}
 .meta-seed:hover {transform: translateY(-2px);}
-.preview-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.preview-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; justify-content: center;}
 
 .question-card {
-  
-  padding: 22px 0px; margin-bottom: 14px;
-  /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.103); */
+  background: var(--card); border: 0px solid var(--border2);
+  border-radius: var(--radius); padding: 22px 24px; margin-bottom: 14px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
   transition: border-color 0.2s;
 }
 .q-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
 .q-num {
   font-family: var(--mono); font-size: 12px; color: var(--bg);
   font-weight: 500;
-  background: var(--text2) ; border: 0px solid var(--border2);
+  background: var(--text3) ; 
   padding: 2px 9px; border-radius: 99px; flex-shrink: 0;
 }
 .q-enonce { font-size: 14px; line-height: 1.7; flex: 1; }
@@ -219,27 +211,28 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .answer-btn {
   display: flex; align-items: center; gap: 10px;
   padding: 10px 14px; border-radius: var(--radius2);
-  border: 2px solid var(--card); background: var(--card);
+  border: 2px solid var(--card); background: var(--card2);
   cursor: pointer; transition: all 0.2s; text-align: left;
-  /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.103); */
+  box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.089);
   font-family: var(--sans); font-size: 13px; color: var(--text); width: 100%;
 }
+
 .answer-letter {
   width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
-  background: var(--text); border: 0px solid var(--border2);
+  background: var(--text3); border: 0px solid var(--border2);
   color: var(--card) ; 
   display: flex; align-items: center; justify-content: center;
   font-family: var(--mono); font-size: 11px; font-weight: 500;
   transition: all 0.2s;
 }
-.answer-btn:hover { border-color: rgba(122, 156, 206, 0.4); background: rgba(122, 156, 206, 0.4);}
-.answer-btn:hover .answer-letter { background: var(--blue); border-color: var; color: var(--text); }
-.answer-btn.selected { border-color: var(--blue); background: rgba(87, 139, 217, 0.24); }
-.answer-btn.selected .answer-letter { background: var(--blue2); border-color: var(--blue); color: var(--text); }
+.answer-btn:hover {  background: var(--accent3);}
+.answer-btn:hover .answer-letter { background: var(--accent); border-color: var; color: white; }
+.answer-btn.selected { border-color: var(--accent); background: var(--accent3); }
+.answer-btn.selected .answer-letter { background: var(--accent); border-color: var(--accent); color: white; }
 .answer-btn.correct { border-color: var(--green); background: rgba(94,184,138,0.08); }
-.answer-btn.correct .answer-letter { background: var(--green); border-color: var(--green); color: var(--bg); }
+.answer-btn.correct .answer-letter { background: var(--green); border-color: var(--green); color: white; }
 .answer-btn.wrong { border-color: var(--red); background: rgba(224,112,112,0.08); }
-.answer-btn.wrong .answer-letter { background: var(--red); border-color: var(--red); color: var(--text); }
+.answer-btn.wrong .answer-letter { background: var(--red); border-color: var(--red); color: white; }
 
 .score-bar {
   background: var(--card); border: 2px solid var(--border);
@@ -252,13 +245,14 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 /* ─── EXPORT ─── */
 .tab-bar { display: flex; gap: 4px; margin-bottom: 20px; }
 .tab-btn {
-  padding: 8px 18px; border-radius: 99px; border: 0px solid var(--border2);
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 8px 18px; border-radius: 10px; border: 0px solid var(--border2);
   background: var(--card); color: var(--text2);
   font-family: var(--sans); font-size: 13px; font-weight: 500; cursor: pointer;
   border : 2px solid var(--card) ;
   transition: all 0.2s;
 }
-.tab-btn.active { background: rgba(87, 122, 217, 0.12); border-color: var(--blue); color: var(--blue); }
+.tab-btn.active { background: var(--accent3); border-color: var(--accent); color: var(--accent); }
 
 .export-options {
   background: var(--card); border: 0px solid var(--border2);
@@ -282,6 +276,7 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   font-family: var(--mono); font-size: 12px; line-height: 1.8;
   max-height: 400px; overflow-y: auto; margin-bottom: 16px;
   white-space: pre; tab-size: 2;
+  color: rgb(230, 230, 230);
 }
 .lt-cmd     { color: #d4af6e; }
 .lt-env     { color: #5eb88a; }
@@ -384,7 +379,7 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   /* Export */
   .tab-bar { overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; }
   .tab-bar::-webkit-scrollbar { display: none; }
-  .tab-btn { white-space: nowrap; flex-shrink: 0; padding: 7px 12px; font-size: 12px; }
+  .tab-btn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 12px; font-size: 12px; }
   .export-options { padding: 14px; gap: 10px; flex-direction: column; align-items: flex-start; }
   .latex-preview { font-size: 11px; padding: 14px; max-height: 280px; }
   .export-btns { flex-direction: column; }
@@ -422,12 +417,12 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   <a href="editeur-banque.html" target="_blank" class="btn-editeur" style="
     margin-left:auto; display:inline-flex; align-items:center; gap:6px;
     padding:6px 14px; border-radius:99px; font-size:12px; font-weight:500;
-     background:rgba(60, 102, 193, 0.08);
+     background:var(--card);
     color:var(--text); text-decoration:none; transition:all .2s;
     white-space:nowrap;
-  " onmouseover="this.style.background='rgba(60, 122, 193, 0.2)'"
-     onmouseout="this.style.background='rgba(60, 122, 193, 0.08)'">
-    📁 Banque
+  " onmouseover="this.style.background='var(--card2)'"
+     onmouseout="this.style.background='var(--card)'">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill=var(--yellow) stroke=var(--yellow) stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder-icon lucide-folder"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg> Banque
   </a>
   
 </header>
@@ -435,56 +430,50 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 <main>
   <!-- ══ VIEW 1 : CONFIGURATION ══ -->
   <div class="view active" id="view-config">
-    <div style="display: flex; align-items: center; ">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; ">
     <div style="display: flex; flex-direction: column;"> 
     <div class="section-title">Configurer le QCM</div>
     <div class="section-sub">Sélectionnez les thèmes, le niveau et le nombre de questions</div>
-      <div class="warning"> ⚠️ Attention, les QCM ne sont pas encore correctement organisés faute de recul sur l’épreuve ; il est donc recommandé de conserver la première spécialité en mode inclusif.</div>
   </div>
   <div class="qrcode" onclick="openQRCode2()"><img 
   src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://mathsroz.github.io/QCM_1ere/"
   alt="QR Code"
-  width="160" height="160"
-  style="border-radius:3px"
-></div></div>
+  width="100" height="100"
+  style="border-radius:3px; margin-left: auto; box-shadow: 0 0 4px rgba(0, 0, 0, 0.226);"
+></div>
+</div>
     
     <div class="level-label">Thèmes <span style="font-size:11px;color:var(--text3);text-transform:none;font-weight:400;margin-left:6px;"> Si aucun thème n’est sélectionné, tous les thèmes seront automatiquement pris en compte. </span></div>
     <div class="theme-grid" style="grid-template-columns:1fr 1fr 1fr;">
       <div class="theme-card" data-theme="calcul" style="--accent:var(--blue);--icon-bg:rgba(137, 175, 200, 0.15);" onclick="toggleTheme(this)">
-        <div class="theme-icon">🔢</div>
+        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calculator-icon lucide-calculator"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></div>
         <div class="theme-name">Calcul numérique et algébrique</div>
         <div class="theme-desc">Fractions, puissances, identités, équations, inéquations</div>
-        <div class="theme-check">✓</div>
       </div>
       <div class="theme-card" data-theme="proportions" style="--accent: var(--pur);--icon-bg:rgba(167,139,250,0.15)" onclick="toggleTheme(this)">
-        <div class="theme-icon">➗</div>
+        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-percent-icon lucide-percent"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
         <div class="theme-name">Proportions et pourcentages</div>
         <div class="theme-desc">Fractions, pourcentages, proportionnalité</div>
-        <div class="theme-check">✓</div>
       </div>
       <div class="theme-card" data-theme="evolutions" style="--accent:var(--yellow);--icon-bg:rgba(201,165,90,0.15)" onclick="toggleTheme(this)">
-        <div class="theme-icon">📉</div>
+        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up-down-icon lucide-trending-up-down"><path d="M14.828 14.828 21 21"/><path d="M21 16v5h-5"/><path d="m21 3-9 9-4-4-6 6"/><path d="M21 8V3h-5"/></svg></div>
         <div class="theme-name">Évolutions et variations</div>
         <div class="theme-desc">Taux d'évolution, coefficient multiplicateur, évolutions successives</div>
-        <div class="theme-check">✓</div>
       </div>
       <div class="theme-card" data-theme="fonctions" style="--accent:var(--green);--icon-bg:rgba(52,211,153,0.15)" onclick="toggleTheme(this)">
-        <div class="theme-icon">📈</div>
+        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-spline-icon lucide-chart-spline"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7"/></svg></div>
         <div class="theme-name">Fonctions et représentations</div>
         <div class="theme-desc">Fonctions affines, images, antécédents, droites</div>
-        <div class="theme-check">✓</div>
       </div>
       <div class="theme-card" data-theme="stats" style="--accent:var(--red);--icon-bg:rgba(248,113,113,0.15)" onclick="toggleTheme(this)">
-        <div class="theme-icon">📊</div>
+        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-column-big-icon lucide-chart-column-big"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><rect x="15" y="5" width="4" height="12" rx="1"/><rect x="7" y="8" width="4" height="9" rx="1"/></svg></div>
         <div class="theme-name">Statistiques</div>
         <div class="theme-desc">Moyenne, médiane, quartiles, boîtes à moustaches</div>
-        <div class="theme-check">✓</div>
       </div>
       <div class="theme-card" data-theme="proba" style="--accent:var(--cyan);--icon-bg:rgba(56,189,248,0.15)" onclick="toggleTheme(this)">
-        <div class="theme-icon">🎲</div>
+        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dices-icon lucide-dices"><rect width="12" height="12" x="2" y="10" rx="2" ry="2"/><path d="m17.92 14 3.5-3.5a2.24 2.24 0 0 0 0-3l-5-4.92a2.24 2.24 0 0 0-3 0L10 6"/><path d="M6 18h.01"/><path d="M10 14h.01"/><path d="M15 6h.01"/><path d="M18 9h.01"/></svg></div>
         <div class="theme-name">Probabilités</div>
         <div class="theme-desc">Événements, probabilités conditionnelles, arbres</div>
-        <div class="theme-check">✓</div>
       </div>
     </div>
     <div class="level-section">
@@ -532,12 +521,12 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
       <div class="preview-meta" id="previewMeta"></div>
     </div>
     <div class="preview-actions">
-      <button class="btn" onclick="goToView('config')">⬅️ Reconfigurer</button>
-      <button class="btn btn-blue" onclick="regenerate()">🔄 Régénérer</button>
-      <button class="btn btn-green" id="btnSubmit" onclick="submitQCM()">✅ Soumettre</button>
-      <button class="btn" id="btnCorrect" onclick="toggleCorrection()">👁️ Afficher le corrigé</button>
-      <button class="btn" onclick="startPresentation()">🖥️ Présentation</button>
-      <button class="btn btn-blue" onclick="goToView('export')">📄 Exporter</button>
+      <button class="btn" onclick="goToView('config')"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-undo2-icon lucide-undo-2"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11"/></svg>   </button>
+      <button class="btn " onclick="regenerate()"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-refresh-ccw-icon lucide-refresh-ccw"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg> </button>
+      <button class="btn " id="btnSubmit" onclick="submitQCM()"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke=var(--green) stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg> Corriger</button>
+      <!-- <button class="btn" id="btnCorrect" onclick="toggleCorrection()">👁️ Afficher le corrigé</button> -->
+      <button class="btn" onclick="startPresentation()"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor-icon lucide-monitor"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg> Présentation</button>
+      <button class="btn " onclick="goToView('export')"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-icon lucide-file"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/></svg> Exporter</button>
     </div>
     <div id="scoreBar" style="display:none" class="score-bar">
       <div class="score-num" id="scoreNum">—</div>
@@ -551,11 +540,11 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
     <div class="section-title">Export LaTeX</div>
     <div class="section-sub">Téléchargez votre QCM en format LaTeX ou compilez-le en PDF</div>
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
-      <button class="btn" onclick="goToView('preview')">⬅️ Prévisualisation</button>
+      <button class="btn" onclick="goToView('preview')"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-undo2-icon lucide-undo-2"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11"/></svg> Prévisualisation</button>
     </div>
     <div class="tab-bar">
-      <button class="tab-btn active" onclick="switchExportTab('exam',this)">📝 Document classique</button>
-      <button class="tab-btn" onclick="switchExportTab('beamer',this)">👨‍🏫 Diaporama</button>
+      <button class="tab-btn active" onclick="switchExportTab('exam',this)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-pen-icon lucide-file-pen"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></svg> Document classique</button>
+      <button class="tab-btn" onclick="switchExportTab('beamer',this)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor-icon lucide-monitor"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg> Diaporama</button>
     </div>
     <div id="opts-exam" class="export-options">
       <label class="checkbox-opt">
@@ -597,8 +586,8 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
     </div>
     <div class="latex-preview" id="latexPreview"></div>
     <div class="export-btns">
-      <button class="btn btn-blue" onclick="downloadTex()">⬇️ Télécharger le .tex</button>
-      <button class="btn btn-green" onclick="compilePDF()">📃 Compiler en PDF</button>
+      <button class="btn" onclick="downloadTex()"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg> Télécharger le .tex</button>
+      <button class="btn" onclick="compilePDF()"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-down-icon lucide-file-down"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg> Compiler en PDF</button>
     </div>
   </div>
 </main>
@@ -705,7 +694,7 @@ function syncNum(v) {
   const pct = (v - 1) / (30 - 1) * 100;
   const slider = document.getElementById('numSlider');
   if (slider) slider.style.background =
-    `linear-gradient(to right, var(--blue) ${pct}%, var(--card2) ${pct}%)`;
+    `linear-gradient(to right, var(--accent) ${pct}%, var(--card2) ${pct}%)`;
 }
 function syncSlider(v) {
   v = Math.max(1, Math.min(30, +v));
@@ -817,7 +806,7 @@ function renderPreview() {
     `<div class="meta-badge meta-seed"  title="Cliquer pour afficher le QRcode" onclick="openQRCode()">qrcode</div>`;
   document.getElementById('scoreBar').style.display = 'none';
   document.getElementById('btnSubmit').style.display = '';
-  document.getElementById('btnCorrect').textContent = '👁️ Afficher le corrigé';
+  // document.getElementById('btnCorrect').textContent = '👁️ Afficher le corrigé';
 
   const container = document.getElementById('questionsContainer');
   container.innerHTML = '';
@@ -875,9 +864,6 @@ function renderQuestion(q, idx, container) {
     grid.appendChild(btn);
   });
   card.appendChild(grid);
-  const hr = document.createElement('hr');
-  hr.className = 'solid'
-  container.appendChild(hr);
   container.appendChild(card);
 }
 
@@ -961,25 +947,25 @@ function submitQCM() {
   document.getElementById('btnSubmit').style.display = 'none';
   setTimeout(()=>{ if(window.renderMathInElement) renderMathInElement(document.body,{delimiters:[{left: '$$', right: '$$', display: true},{left:'$',right:'$',display:false}],throwOnError:false}); },80);
 }
-function toggleCorrection() {
-  state.showCorrection = !state.showCorrection;
-  document.getElementById('btnCorrect').textContent = state.showCorrection ? '🙈 Masquer le corrigé' : '👁️ Afficher le corrigé';
-  state.generatedQuestions.forEach((q,qi) => {
-    const sel = state.userAnswers[qi];
-    document.getElementById('answers_'+qi).querySelectorAll('.answer-btn').forEach((btn,ri) => {
-      btn.classList.remove('selected','correct','wrong');
-      if (state.showCorrection) {
-        const isCorrect = q.reponses[ri] === q.bonneReponse;
-        const isSelected = ri === sel;
-        if (isCorrect) btn.classList.add('correct');
-        if (!isCorrect && isSelected) btn.classList.add('wrong');
-      } else {
-        if (ri === sel) btn.classList.add('selected');
-      }
-    });
-  });
-  setTimeout(()=>{ if(window.renderMathInElement) renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false}); },200);
-}
+// function toggleCorrection() {
+//   state.showCorrection = !state.showCorrection;
+//   document.getElementById('btnCorrect').textContent = state.showCorrection ? '🙈 Masquer le corrigé' : '👁️ Afficher le corrigé';
+//   state.generatedQuestions.forEach((q,qi) => {
+//     const sel = state.userAnswers[qi];
+//     document.getElementById('answers_'+qi).querySelectorAll('.answer-btn').forEach((btn,ri) => {
+//       btn.classList.remove('selected','correct','wrong');
+//       if (state.showCorrection) {
+//         const isCorrect = q.reponses[ri] === q.bonneReponse;
+//         const isSelected = ri === sel;
+//         if (isCorrect) btn.classList.add('correct');
+//         if (!isCorrect && isSelected) btn.classList.add('wrong');
+//       } else {
+//         if (ri === sel) btn.classList.add('selected');
+//       }
+//     });
+//   });
+//   setTimeout(()=>{ if(window.renderMathInElement) renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false}); },200);
+// }
 
 // ═══════════════════════════════════════════════════════
 //  EXPORT LATEX
@@ -1131,7 +1117,7 @@ function toggleThemeMode() {
   // Activer les transitions seulement au moment du basculement
   document.body.classList.add('theme-transitioning');
   const isLight = document.body.classList.toggle('light');
-  document.getElementById('themeToggle').textContent = isLight ? '🌞' : '🌙';
+  document.getElementById('themeToggle').textContent = isLight ? '☀️' : '🌙';
   localStorage.setItem('theme', isLight ? 'light' : 'dark');
   // Retirer après la transition
   setTimeout(() => document.body.classList.remove('theme-transitioning'), 300);
@@ -1143,7 +1129,7 @@ function toggleThemeMode() {
     document.body.classList.add('light');
     document.addEventListener('DOMContentLoaded', () => {
       const btn = document.getElementById('themeToggle');
-      if (btn) btn.textContent = '🌞';
+      if (btn) btn.textContent = '☀️';
     });
   }
 })();
