@@ -13,7 +13,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QCM Mathématiques — Première</title>
+<title>QCM Automatismes Mathématiques — Première</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playpen+Sans+Arabic:wght@100..800&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="style.css">
 <style>
 /* ─── MAIN ─── */
-main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; }
+main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 20px 20px 80px; }
 
 /* ─── VIEW TRANSITIONS ─── */
 .view { display: none; animation: slideIn 0.3s cubic-bezier(0.16,1,0.3,1); }
@@ -50,7 +50,7 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
   background: var(--card); border: 2px solid var(--border2);border-color: var(--card); 
   border-radius: var(--radius); padding: 18px 20px;
   cursor: pointer; position: relative; overflow: hidden;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.05);
   transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
 }
 .theme-card::after {
@@ -80,7 +80,7 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
   padding: 9px 20px; border-radius: 99px; border: 2px solid var(--card);
   background: var(--card); color: var(--text2);
   font-family: var(--sans); font-size: 13px; font-weight: 500;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.05);
   cursor: pointer; transition: all 0.25s;
 }
 .level-btn:hover { border-color: rgba(255,255,255,0.12); color: var(--text);transform: translateY(-2px);}
@@ -138,7 +138,7 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
 .slider-card {
   background: var(--card); border: 0px solid var(--border2);
   border-radius: var(--radius); padding: 20px 22px; margin-bottom: 28px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.05);
 }
 .slider-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 18px; }
 .slider-title { font-size: 14px; font-weight: 600; }
@@ -170,7 +170,7 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   border: none; color: var(--bg);
   font-family: var(--sans); font-size: 15px; font-weight: 600;
   cursor: pointer; position: relative; overflow: hidden;
- box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
+ box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.05);
   transition: all 0.25s; letter-spacing: -0.2px;
 }
 
@@ -184,6 +184,7 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .meta-badge {
   font-family: var(--mono); font-size: 11px; padding: 4px 10px;
   border-radius: 99px; border: 0px solid; background: var(--card);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, .05);
 }
 .meta-blue   { border-color: var(--blue); color: var(--text2); }
 .meta-green  { border-color: rgba(111, 179, 144, 0.4);  color: var(--green); }
@@ -196,7 +197,7 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 .question-card {
   background: var(--card); border: 0px solid var(--border2);
   border-radius: var(--radius); padding: 22px 24px; margin-bottom: 14px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.103);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.05);
   transition: border-color 0.2s;
 }
 .q-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
@@ -239,7 +240,7 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   border-radius: var(--radius); padding: 18px 22px; margin-bottom: 20px;
   display: flex; align-items: center; gap: 16px;
 }
-.score-num { font-family: var(--mono); font-size: 28px; font-weight: 500; color: var(--blue); }
+.score-num { font-family: var(--mono); font-size: 28px; font-weight: 500; color: var(--accent); }
 .score-label { font-size: 14px; color: var(--text2); }
 
 /* ─── EXPORT ─── */

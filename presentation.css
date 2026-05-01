@@ -36,10 +36,10 @@
   font-family: var(--sans); font-size: 13px; font-weight: 500; cursor: pointer;
   transition: all .2s;
 }
-.pres-btn-prev { background: var(--card2); color: var(--text2); }
+.pres-btn-prev { background: var(--card2); color: var(--text2); box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.432);}
 .pres-btn-prev:hover { color: var(--text); }
 .pres-btn-prev:disabled { opacity: .35; cursor: not-allowed; }
-.pres-btn-next { background: var(--blue); color: var(--bg); }
+.pres-btn-next { background: var(--blue); color: var(--bg); box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.432);}
 .pres-btn-next:hover { opacity: .85; }
 .pres-btn-close {
   background: none; color: var(--text3); font-size: 20px; padding: 4px 10px;
@@ -49,9 +49,10 @@
 .pres-corr-btn {
   background: var(--card2); color: var(--text2); border-radius: 15px;
   padding: 6px 14px; font-size: 12px; 
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.432);
 }
 .pres-corr-btn:hover { color: var(--text); }
-.pres-corr-btn.on { background: rgba(94,184,138,.1); color: var(--green); border-color: rgba(94,184,138,.3); }
+
 
 .pres-body {
   flex: 1;
@@ -91,7 +92,7 @@
   justify-content: center;
   position: relative;
   padding: 5px 0; border-radius: 12px;
-  box-shadow: 2px 2px 2px rgba(0,0,0,.103);
+  box-shadow: 0px 0px 2px rgba(0,0,0,.103);
   background: #ffffff; border: 2px solid #030303;
   line-height: 1.6; cursor: pointer;
   transition: all .2s; font-family: var(--sans); text-align: center; width: 100%;

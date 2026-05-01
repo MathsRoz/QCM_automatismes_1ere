@@ -105,7 +105,7 @@ header {
   padding: 0 24px;
   height: 62px;
   display: flex; align-items: center; gap: 24px;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
 }
 .logo {
   display: flex; align-items: center; gap: 10px;
@@ -153,6 +153,7 @@ header {
   font-family: var(--sans); font-size: 13px; font-weight: 500;
   cursor: pointer; transition: all 0.2s; border: 0px solid var(--border2);
   background: var(--card); color: var(--text2);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.05);
 }
 .btn:hover {  color: var(--text); transform: translateY(-2px); }
 .btn-blue  { background: rgba(123,167,212,0.12); border-color: rgba(123,167,212,0.3); color: var(--text); }
