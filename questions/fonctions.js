@@ -8,98 +8,15 @@
 
 const QUESTIONS_FONCTIONS = [
 
-  // // ── Calculer une image ──
-  // {
-  //   id: "fonc_001", theme: "fonctions",
-  //   niveau: ["techno", "specifique", "specialite"], cols: 4,
-  //   variables: { a: { min: -6, max: 6 }, b: { min: -8, max: 8 }, x: { min: -4, max: 6 } },
-  //   enonce: (v) => {
-  //     v.b = (v.b===0) ? 1 : v.b;
-  //     v.a = (v.a===0) ? -2 : v.a;
-  //     s = (v.b<0) ? "":"+";
-  //     return `$f(x) = ${v.a}x `+s+` ${v.b}$. Calculer $f(${v.x})$`},
-  //   bonneReponse: (v) => `$${v.a * v.x + v.b}$`,
-  //   distracteurs: (v) => [
-  //     `$${v.a * v.x - v.b}$`,
-  //     `$${v.a + v.x + v.b}$`,
-  //     `$${(v.a + v.b) * v.x}$`
-  //   ]
-  // },
-
-  // // ── Trouver un antécédent ──
-  // {
-  //   id: "fonc_002", theme: "fonctions",
-  //   niveau: ["techno", "specifique", "specialite"], cols: 4,
-  //   variables: { a: { min: 1, max: 6 }, b: { min: -8, max: 8 }, c: { min: 1, max: 5 } },
-  //   enonce: (v) => `$f(x) = ${v.a}x + ${v.b}$. Trouver l'antécédent de $${v.a * v.c + v.b}$`,
-  //   bonneReponse: (v) => `$x = ${v.c}$`,
-  //   distracteurs: (v) => [
-  //     `$x = ${v.a + v.b}$`,
-  //     `$x = ${v.a * v.b}$`,
-  //     `$x = -${v.c}$`
-  //   ]
-  // },
-
-  // ── Reconnaître fonction affine / linéaire ──
-  // {
-  //   id: "fonc_003", theme: "fonctions",
-  //   niveau: ["techno", "specifique", "specialite"], cols: 4,
-  //   variables: { a: { min: 1, max: 8 }, b: { min: -10, max: 10 } },
-  //   enonce: (v) => `$f(x) = ${v.a}x + ${v.b}$ est une fonction…`,
-  //   bonneReponse: (v) => `Affine, strictement croissante`,
-  //   distracteurs: (v) => [
-  //     `Linéaire`,
-  //     `Affine, strictement décroissante`,
-  //     `Constante`
-  //   ]
-  // },
-
-  // // ── Identifier une fonction linéaire ──
-  // {
-  //   id: "fonc_004", theme: "fonctions",
-  //   niveau: ["techno", "specifique", "specialite"], cols: 4,
-  //   variables: { a: { min: 1, max: 8 } },
-  //   enonce: (v) => `$f(x) = ${v.a}x$ est une fonction…`,
-  //   bonneReponse: (v) => `Linéaire`,
-  //   distracteurs: (v) => [
-  //     `Affine non linéaire`,
-  //     `Constante`,
-  //     `Quadratique`
-  //   ]
-  // },
-
-  // ── Lire le coefficient directeur ──
-  // {
-  //   id: "fonc_005", theme: "fonctions",
-  //   niveau: ["techno", "specifique", "specialite"], cols: 4,
-  //   variables: { m: { min: 1, max: 5 }, b: { min: -6, max: 6 } },
-  //   enonce: (v) => `Quel est le coefficient directeur de $y = ${v.m}x + ${v.b}$ ?`,
-  //   bonneReponse: (v) => `$${v.m}$`,
-  //   distracteurs: (v) => [
-  //     `$${v.b}$`,
-  //     `$${v.m + v.b}$`,
-  //     `$-${v.m}$`
-  //   ]
-  // },
 
   // ── Calculer le coefficient directeur à partir de deux points ──
-  {
-    id: "fonc_006", theme: "fonctions",
-    niveau: ["techno", "specifique", "specialite"], cols: 4,
-    variables: { x1: { min: 0, max: 3 }, y1: { min: 1, max: 6 }, dx: { min: 2, max: 6 }, dy: { min: 2, max: 10 } },
-    enonce: (v) => `Coefficient directeur de la droite passant par $A(${v.x1};${v.y1})$ et $B(${v.x1 + v.dx};${v.y1 + v.dy})$`,
-    bonneReponse: (v) => `$${frac(v.dy, v.dx)}$`,
-    distracteurs: (v) => [
-      `$${frac(-v.dy, v.dx)}$`,
-      `$${frac(v.dx, v.dy)}$`,
-      `$${frac(-v.dx, v.dy)}$`
-    ]
-  },
+  
 
   // ── Appartenance d'un point à une courbe ── done
   {
-    id: "fonc_008", theme: "fonctions",
+    id: "F1-A", theme: "fonctions", groupe :"Exploiter une équation de courbe",
     niveau: ["specifique", "specialite"], cols: 4,
+    desc : 'Appartenance d\'un point à une courbe',
     variables: { a: { min: -5, max: 5 }, b: { min: -6, max: 6 }, c: { min: 1, max: 8 } },
     enonce: (v) => {
       if(v.a==0){v.a=3}
@@ -114,9 +31,10 @@ const QUESTIONS_FONCTIONS = [
 
 // ── lecture d'éuqtation de droite ──
   {
-    id: 'fonc_010', theme: 'fonctions',
-    groupe: 'lecture droite',
+    id: 'F2-A', theme: 'fonctions',
+    groupe: 'Représentation de droites et fonctions affines',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
+    desc : 'Déterminer graphiquement l\'équation réduite d\'une droite',
     variables: {
       x:  { values: [-3,-2,-1,1,2,3] },
       gx : {values : [1,2]},
@@ -162,9 +80,10 @@ const QUESTIONS_FONCTIONS = [
 
   // ── Lire f(x₀) graphiquement ──
   {
-    id: 'fonc_011', theme: 'fonctions',
-    groupe: 'image',
+    id: 'F3-A', theme: 'fonctions',
+    groupe: 'Déterminer graphiquement des images et des antécédents',
     niveau: ['techno', 'specifique', 'specialite'], cols: 4,
+    desc : 'Lire une image',
     variables: {
       a:  { values: [-2,-1,-.5,-.25,.25,.5,1,2] },
       gx : {values : [1,2]},
@@ -210,8 +129,9 @@ const QUESTIONS_FONCTIONS = [
 
   // ── Résoudre une équation f(x)=k ──
   {
-    id: 'fonc_012_affine', theme: 'fonctions',
-    groupe: 'f(x)=k',
+    id: 'F4-A1', theme: 'fonctions',
+    groupe: 'Résoudre graphiquement une équation, une inéquation',
+    desc : 'Résoudre $f(x)=a$ I',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
     variables: {
       a:  { values: [-2,-1,-.5,-.25,.25,.5,1,2] },
@@ -257,9 +177,10 @@ const QUESTIONS_FONCTIONS = [
   },
 
   {
-    id: 'fonc_012_second_degre', theme: 'fonctions',
-    groupe: 'f(x)=k',
+    id: 'F4-A2', theme: 'fonctions',
+    groupe: 'Résoudre graphiquement une équation, une inéquation',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
+    desc : 'Résoudre $f(x)=a$ II',
     variables: {
       a:  { values: [-2,-1,1,2] },
       gx : {values : [1,2]},
@@ -303,9 +224,10 @@ const QUESTIONS_FONCTIONS = [
    // ── Reconnaître la courbe d'une fonction affine ──
   // Les 4 réponses sont des petits graphiques (SVG web + TikZ export)
   {
-    id: 'fonc_013', theme: 'fonctions',
-    groupe: 'reconnaitre_courbe',
+    id: 'F2-B', theme: 'fonctions',
+    groupe: 'Représentation de droites et fonctions affines',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
+    desc: 'Retrouver la représentation graphique d\'une droite',
     variables: {
       a: { values: [-9,-8,-7,-6,-5,-4,-3,-2, -1, 1, 2,3,4,5,6,7,8,9] },
       b: { values: [-9,-8,-7,-6,-5,-4,-3,-2, -1, 1, 2,3,4,5,6,7,8,9] },
@@ -356,9 +278,10 @@ const QUESTIONS_FONCTIONS = [
   },
 
   {
-    id: 'fonc_014_affine', theme: 'fonctions',
-    groupe: 'f(x)=g(x)',
+    id: 'F4-B1', theme: 'fonctions',
+    groupe: 'Résoudre graphiquement une équation, une inéquation',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
+    desc : 'Résoudre $f(x)=g(x)$ I',
     variables: {
       a1:  { values: [-1,-.5,-.25,.25,.5,1] },
       a2:{values:[-1,-.5,-.25,.25,.5,1]},
@@ -418,9 +341,10 @@ const QUESTIONS_FONCTIONS = [
   },
 
   {
-    id: 'fonc_014_affine_second_deg', theme: 'fonctions',
-    groupe: 'f(x)=g(x)',
+    id: 'F4-B2', theme: 'fonctions',
+    groupe: 'Résoudre graphiquement une équation, une inéquation',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
+    desc : 'Résoudre $f(x)=g(x)$ II',
     variables: {
       a2: {values: [-1,1]},
       r1: {min:-3,max:3},
@@ -502,9 +426,10 @@ const QUESTIONS_FONCTIONS = [
 
 
   {
-    id: 'fonc_015_affine_second_deg', theme: 'fonctions',
-    groupe: 'f(x)>g(x)',
+    id: 'F4-C', theme: 'fonctions',
+    groupe: 'Résoudre graphiquement une équation, une inéquation',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
+    desc : 'Résoudre $f(x)\\geqslant g(x)$ ',
     variables: {
       a2: {values: [-1,1]},
       r1: {min:-3,max:3},
@@ -605,8 +530,9 @@ const QUESTIONS_FONCTIONS = [
   },
 
    {
-    id: 'fonc_016', theme: 'fonctions',
-    groupe: 'tableau de signes affine',
+    id: 'F5-A1', theme: 'fonctions',
+    groupe: 'Tableau de signes et de variations',
+    desc : 'Déterminer la fonction du tableau de signes I',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
     variables: { a:{values:[-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9]},
       b:{values:[-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9]}
@@ -639,8 +565,9 @@ const QUESTIONS_FONCTIONS = [
   },
 
   {
-    id: 'fonc_017', theme: 'fonctions',
-    groupe: 'tableau de signes affine',
+    id: 'F5-B1', theme: 'fonctions',
+    groupe: 'Tableau de signes et de variations',
+    desc : 'Déterminer le tableau de signes I',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
     variables: { a:{values:[-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9]},
       b:{values:[-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9]}
@@ -681,8 +608,9 @@ const QUESTIONS_FONCTIONS = [
   },
 
   {
-    id: 'fonc_018', theme: 'fonctions',
-    groupe: 'tableau de signes second degré',
+    id: 'F5-B2', theme: 'fonctions',
+    groupe: 'Tableau de signes et de variations',
+    desc : 'Déterminer le tableau de signes II',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
     variables: { a:{values:[-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9]},
       b:{values:[-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9]},
@@ -723,8 +651,9 @@ const QUESTIONS_FONCTIONS = [
   },
 
   {
-    id: 'fonc_018b', theme: 'fonctions',
-    groupe: 'tableau de signes second degré',
+    id: 'F5-A2', theme: 'fonctions',
+    groupe: 'Tableau de signes et de variations',
+    desc : 'Déterminer la fonction du tableau de signes II',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
     variables: { a:{values:[-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9]},
       b:{values:[-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9]},
@@ -765,8 +694,9 @@ const QUESTIONS_FONCTIONS = [
 
 
   {
-    id: 'fonc_019_degre3', theme: 'fonctions',
-    groupe: 'graph -> signe',
+    id: 'F5-C2', theme: 'fonctions',
+    groupe: 'Tableau de signes et de variations',
+    desc : 'Déterminer le tableau de signes d\'une fonction représentée graphiquement II',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
     variables: {
       a:  { values: [-1,1] },
@@ -790,10 +720,10 @@ const QUESTIONS_FONCTIONS = [
     enonce: function(v) {
       v._a=v.a+'*x-'+v.c
       v.f= simplExpr(v.b +'*('+v._a+'-1)*('+v._a+'-2)*('+v._a+'+1)')
-      // Pendant dedupeAnswers, on calcule juste _y0 — pas de SVG
-      if (v._deduping) return '';
       v._r=[(2+v.c)/v.a,(1+v.c)/v.a,(-1+v.c)/v.a]
       v._r.sort((a, b) => a - b);
+      // Pendant dedupeAnswers, on calcule juste _r — pas de SVG
+      if (v._deduping) return '';
       
       var svg = Fig.svg(-4, 4, -4, 4)
         .grid().axes().gradX().gradY().clip()
@@ -825,8 +755,9 @@ const QUESTIONS_FONCTIONS = [
   },
 
   {
-    id: 'fonc_019_degre2', theme: 'fonctions',
-    groupe: 'graph -> signe',
+    id: 'F5-C1', theme: 'fonctions',
+    groupe: 'Tableau de signes et de variations',
+    desc : 'Déterminer le tableau de signes d\'une fonction représentée graphiquement I',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
     variables: {
       s:{values:[-1,1]},
@@ -883,8 +814,9 @@ const QUESTIONS_FONCTIONS = [
   },
 
   {
-    id: 'fonc_020', theme: 'fonctions', groupe:'xf(x)>0',
+    id: 'F4-D', theme: 'fonctions', groupe: 'Résoudre graphiquement une équation, une inéquation',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
+    desc : 'Résoudre $x\\times f(x)>0$',
     variables: { a: {values:[-1,1]},b: {values:[-1,1]}   },
     
     aux: function(f,p1,p2,p3,p4) {
@@ -944,7 +876,8 @@ const QUESTIONS_FONCTIONS = [
 
 
   {
-    id: 'fonc_021', theme: 'fonctions', groupe:'Calcul d\'image',
+    id: 'F6-A', theme: 'fonctions', groupe:'Calculer une image',
+    desc : 'Calculer l\'image d\'une fonction donnée',
     niveau: ['techno', 'specifique', 'specialite'], cols: 4,
     variables: {situation:{values:[0,1,2]}, a: {min:2,max:3}, b: {min:2,max:5}, c: {min:2,max:9}, x:{min:-4,max:4} },
     
@@ -995,7 +928,8 @@ const QUESTIONS_FONCTIONS = [
   },
 
   {
-    id: 'fonc_022_degre2', theme: 'fonctions',
+    id: 'F5-D', theme: 'fonctions', groupe:"Tableau de signes et de variations",
+    desc : 'Déterminer le tableau de variations d\'une fonction représentée graphiquement ',
     niveau: ['techno', 'specifique', 'specialite'], cols: 2,
     variables: {
       s:{values:[-1,1]},
@@ -1054,5 +988,19 @@ const QUESTIONS_FONCTIONS = [
       ];
     }
   },
+
+
+  {
+    id: "F7-A", theme: "fonctions", groupe : "Calculer le coefficient directeur",
+    niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : 'Coefficient directeur d\'une droite passant par deux points',
+    variables: { x1: { min: 0, max: 3 }, y1: { min: 1, max: 6 }, dx: { min: 2, max: 6 }, dy: { min: 2, max: 10 } },
+    enonce: (v) => `Quel est le coefficient directeur de la droite passant par $A(${v.x1};${v.y1})$ et $B(${v.x1 + v.dx};${v.y1 + v.dy})$ ?`,
+    bonneReponse: (v) => `$${frac(v.dy, v.dx)}$`,
+    distracteurs: (v) => [
+      `$${frac(-v.dy, v.dx)}$`,
+      `$${frac(v.dx, v.dy)}$`,
+      `$${frac(-v.dx, v.dy)}$`
+    ]
+  },
 ];
- 

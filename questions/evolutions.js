@@ -7,8 +7,9 @@ const QUESTIONS_EVOLUTIONS = [
 
   // ── Hausse → coefficient multiplicateur ──
   {
-    id: "evol_001", theme: "evolutions", groupe : "coeff_mul",
+    id: "E1-A", theme: "evolutions", groupe : "Passer d’une formulation additive  à une formulation multiplicative",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : 'Augmenter de $t\\%$ revient à multiplier par ...',
     variables: { t: { min: 1, max: 20 } },
     enonce: (v) => `Augmenter de $${v.t}\\%$ correspond à multiplier par…`,
     bonneReponse: (v) => `$${(1 + v.t / 100).toFixed(2)}$`,
@@ -21,8 +22,9 @@ const QUESTIONS_EVOLUTIONS = [
 
   // ── Baisse → coefficient multiplicateur ──
   {
-    id: "evol_002", theme: "evolutions", groupe : "coeff_mul",
+    id: "E1-B", theme: "evolutions", groupe : "Passer d’une formulation additive  à une formulation multiplicative",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : 'Diminuer de $t\\%$ revient à multiplier par ...',
     variables: { t: { min: 1, max: 30 } },
     enonce: (v) => `Diminuer de $${v.t}\\%$ correspond à multiplier par…`,
     bonneReponse: (v) => `$${(1 - v.t / 100).toFixed(2)}$`,
@@ -35,8 +37,9 @@ const QUESTIONS_EVOLUTIONS = [
 
   // ── Calculer la valeur finale après hausse ── done
   {
-    id: "evol_003", theme: "evolutions", groupe :"val_ini_fin",
+    id: "E2-A", theme: "evolutions", groupe :"Appliquer un taux d’évolution",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : "Application d'une hausse",
     variables: { v0: { min: 1, max: 3 }, t: { min: 1, max: 4 } },
     enonce: (v) => `Une valeur de $${v.v0*20}$ augmente de $${v.t*10}\\%$. La valeur est alors égale à ...`,
     bonneReponse: (v) => `$${v.v0 *20* (1 + v.t / 10)}$`,
@@ -49,8 +52,9 @@ const QUESTIONS_EVOLUTIONS = [
 
   // ── Calculer la valeur finale après baisse ── done
   {
-    id: "evol_003b", theme: "evolutions", groupe :"val_ini_fin",
+    id: "E2-B", theme: "evolutions", groupe :"Appliquer un taux d’évolution",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : "Application d'une baisse",
     variables: { v0: { min: 1, max: 3 }, t: { min: 1, max: 4 } },
     enonce: (v) => `Une valeur de $${v.v0*20}$ baisse de $${v.t*10}\\%$. La valeur est alors égale à ...`,
     bonneReponse: (v) => `$${v.v0 *20* (1 - v.t / 10)}$`,
@@ -63,8 +67,9 @@ const QUESTIONS_EVOLUTIONS = [
 
   // ── Retrouver la valeur initiale ──
   {
-    id: "evol_004", theme: "evolutions",groupe :"val_ini_fin",
+    id: "E2-C", theme: "evolutions",groupe :"Appliquer un taux d’évolution",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : "Retrouver la valeur initiale",
     variables: { v0: { min: 20, max: 80,step:20 }, t: { min: 20, max: 40, step:10 } },
     enonce: (v) => {
       const vf = Math.round(v.v0* (1 + v.t / 100));
@@ -83,8 +88,9 @@ const QUESTIONS_EVOLUTIONS = [
 
   // ── Calculer un taux d'évolution ──
   {
-    id: "evol_005", theme: "evolutions",
+    id: "E3-A", theme: "evolutions", groupe : "Calculer un taux d’évolution",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : "Calculer un taux d'évolution entre $V_i$ et $V_f$",
     variables: { v0: { min: 1, max: 25 }, t: { min: -9 , max: 10 } },
     enonce: (v) => {
       if (v.t===0){v.t=-1;}
@@ -99,8 +105,9 @@ const QUESTIONS_EVOLUTIONS = [
 
   // ── Taux global de deux évolutions successives ──
   {
-    id: "evol_006", theme: "evolutions", groupe : "evo_succ",
+    id: "E4-A", theme: "evolutions", groupe : "Calculer le taux d’évolution d'évolutions successives",
     niveau: ["specifique", "specialite"], cols: 4,
+    desc : 'Taux de deux augmentations',
     variables: { t1: { min: 10, max: 100, step: 10}, t2: { min: 10, max: 100, step:10 } },
     enonce: (v) => `Une hausse de $${v.t1}\\%$ puis une hausse de $${v.t2}\\%$ correspond à une hausse de :`,
     bonneReponse: (v) => `$${((1 + v.t1 / 100) * (1 + v.t2 / 100) * 100 - 100).toFixed(0)}\\%$`,
@@ -112,8 +119,9 @@ const QUESTIONS_EVOLUTIONS = [
   },
 
   {
-    id: "evol_006b", theme: "evolutions", groupe : "evo_succ",
+    id: "E4-B", theme: "evolutions", groupe : "Calculer le taux d’évolution d'évolutions successives",
     niveau: ["specifique", "specialite"], cols: 2,
+    desc : 'Taux d\'une hausse puis une baisse',
     variables: { t1: { min: 10, max: 100, step: 10}, t2: { min: 10, max: 90, step:10 } },
     enonce: (v) => `Une hausse de $${v.t1}\\%$ puis une baisse de $${v.t2}\\%$ correspond à :`,
     bonneReponse: (v) => {
@@ -129,8 +137,9 @@ const QUESTIONS_EVOLUTIONS = [
 
   // ── Taux d'évolution réciproque ──
   {
-    id: "evol_007", theme: "evolutions",
+    id: "E5-A", theme: "evolutions", groupe : "Calculer un taux d’évolution réciproque",
     niveau: ["specifique", "specialite"], cols: 4,
+    desc : 'Taux d\'évolution réciproque',
     variables: { t: { min: -50, max: 25, step:75 } },
     enonce: (v) => {
       signe = (v.t<0)? "" :"+";
@@ -145,8 +154,9 @@ const QUESTIONS_EVOLUTIONS = [
 
   // ── Coefficient multiplicateur → taux ──
   {
-    id: "evol_008", theme: "evolutions", groupe :"coeff_mul",
+    id: "E1-C", theme: "evolutions", groupe :"Passer d’une formulation additive  à une formulation multiplicative",
     niveau: ["techno", "specifique", "specialite"], cols: 2,
+    desc : 'Multiplier par $C$ correspond à ...',
     variables: { t: { min: -35, max: 35 } },
     enonce: (v) =>{
       if(v.t===0){v.t=-17;}
@@ -160,8 +170,9 @@ const QUESTIONS_EVOLUTIONS = [
   },
   
   {
-    id: "evol_009", theme: "evolutions", groupe :"coeff_mul",
+    id: "E4-C", theme: "evolutions", groupe :"Calculer le taux d’évolution d'évolutions successives",
     niveau: ["techno", "specifique", "specialite"], cols: 2,
+    desc : 'Calcul pour deux augmentations',
     variables: { t: { min: 10, max: 30 ,step:10} },
     enonce: (v) =>{
       if(v.t===0)(v.t=-17)

@@ -7,7 +7,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Fractions : addition à même dénominateur ── done
   {
-    id: "calc_001", theme: "calcul", groupe :"fraction",
+    id: "C1-A", theme: "calcul", groupe :"Opérations et comparaisons de fractions",
+    desc : 'Addition de fractions',
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     variables: { a: { min: 1, max: 7 }, b: { min: 2, max: 9 }, c: { min: 1, max: 7 } },
     enonce: (v) => {
@@ -24,7 +25,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Fractions : multiplication ── done
   {
-    id: "calc_002", theme: "calcul", groupe :"fraction",
+    id: "C1-B", theme: "calcul", groupe :"Opérations et comparaisons de fractions",
+    desc : 'Multiplication de fractions',
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     variables: { a: { min: 1, max: 5 }, b: { min: 2, max: 7 }, c: { min: 1, max: 5 }, d: { min: 2, max: 7 } },
     enonce: (v) => {
@@ -41,7 +43,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Comparer deux fractions ── done
   {
-    id: "calc_003", theme: "calcul", groupe :"fraction",
+    id: "C1-C1", theme: "calcul", groupe :"Opérations et comparaisons de fractions",
+    desc : 'Comparaison de fractions I',
     niveau: ["techno", "specifique", "specialite"], cols: 2,
     variables: { a: { min: 3, max: 6 }, b: { min: 3, max: 8 }, c: { min: 1, max: 6 }, d: { min: 3, max: 8 } },
     enonce: (v) => {
@@ -78,7 +81,8 @@ const QUESTIONS_CALCUL = [
   },
 
   {
-    id: "calc_003b", theme: "calcul", groupe :"fraction",
+    id: "C1-C2", theme: "calcul", groupe :"Opérations et comparaisons de fractions",
+    desc : 'Comparaison de fractions II',
     niveau: ["techno", "specifique"], cols: 2,
     variables: { a: {values:[20,40,50,60,70,80]} },
     enonce: (v) => {
@@ -93,7 +97,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Puissances : produit ── done
   {
-    id: "calc_004", theme: "calcul", groupe :"puissance",
+    id: "C2-A", theme: "calcul", groupe :"Opérations sur les puissances",
+    desc : 'Simplifier $a^n \\times  a^m$',
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     variables: { a: { min: 2, max: 5 }, p: { min: -9, max: 9 }, q: { min: -9, max: 9 } },
     enonce: (v) => `Simplifier $${v.a}^{${v.p}} \\times ${v.a}^{${v.q}}$`,
@@ -107,7 +112,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Puissances : quotient ── done
   {
-    id: "calc_005", theme: "calcul", groupe :"puissance",
+    id: "C2-B", theme: "calcul", groupe :"Opérations sur les puissances",
+    desc : 'Simplifier $\\dfrac{a^n}{a^m}$',
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     variables: { a: { min: 2, max: 6 }, p: { min: -6, max: 6 }, q: { min: -6, max: 8 } },
     enonce: (v) => {
@@ -123,7 +129,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Écriture décimale → pourcentage ── done
   {
-    id: "calc_006", theme: "calcul", groupe :"%",
+    id: "C3-A", theme: "calcul", groupe :"Ecriture décimale, fractionnaire et pourcentage",
+    desc : 'Ecrire $a\\%$ sous forme décimale',
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     variables: { n: { min: 1, max: 9 } },
     enonce: (v) => `Écrire $${v.n * 5}\\%$ sous forme décimale`,
@@ -137,7 +144,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Pourcentage → décimale ── done
   {
-    id: "calc_007", theme: "calcul", groupe :"%",
+    id: "C3-B", theme: "calcul", groupe :"Ecriture décimale, fractionnaire et pourcentage",
+    desc : 'Ecrire $a$ en pourcentage',
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     variables: { n: { min: 1, max: 9 } },
     enonce: (v) => `Écrire $0.${v.n < 10 ? '0' + v.n : v.n}$ sous forme de pourcentage`,
@@ -151,7 +159,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Identité remarquable : (a+b)² ── done
   {
-    id: "calc_008", theme: "calcul", groupe : "id_rem",
+    id: "C4-A", theme: "calcul", groupe : "Développer, factoriser",
+    desc : 'Développer $(ax+b)^2$',
     niveau: ["techno", "specifique", "specialite"], cols: 2,
     variables: { a: { min: 2, max: 8 },
                   b:{min:2,max:8}},
@@ -166,7 +175,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Identité remarquable : (a-b)² ── done
   {
-    id: "calc_009", theme: "calcul",groupe : "id_rem",
+    id: "C4-B", theme: "calcul",groupe : "Développer, factoriser",
+    desc : 'Développer $(ax-b)^2$',
     niveau: ["techno", "specifique", "specialite"], cols: 2,
     variables: { a: { min: 2, max: 7 },
                   b:{min:2,max:8} },
@@ -181,7 +191,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Identité remarquable : (a+b)(a-b) ── done
   {
-    id: "calc_010", theme: "calcul",groupe : "id_rem",
+    id: "C4-C", theme: "calcul",groupe : "Développer, factoriser",
+    desc : 'Développer $(ax+b)(ax-b)^2$',
     niveau: ["techno", "specifique", "specialite"], cols: 2,
     variables: { a: { min: 2, max: 7 } ,
                   b:{min:2,max:8} },
@@ -196,7 +207,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Factorisation : différence de carrés ── done
   {
-    id: "calc_011", theme: "calcul", groupe : "id_rem",
+    id: "C4-D", theme: "calcul", groupe : "Développer, factoriser",
+    desc : 'Factoriser $x^2-b^2$',
     niveau: ["techno","specifique", "specialite"], cols: 2,
     variables: { a: { min: 2, max: 8 } },
     enonce: (v) => `Factoriser $x^2 - ${v.a ** 2}$`,
@@ -210,7 +222,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Équation du 1er degré ── done
   {
-    id: "calc_012", theme: "calcul", groupe : "equation",
+    id: "C5-A", theme: "calcul", groupe : "Résoudre une équation ou inéquation",
+    desc : 'Résoudre $ax+b=0$',
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     variables: { a: { min: 2, max: 9 }, b: { min: 1, max: 20 } },
     enonce: (v) => {
@@ -226,7 +239,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Équation ax+b = c ── done
   {
-    id: "calc_013", theme: "calcul", groupe : "equation",
+    id: "C5-B", theme: "calcul", groupe : "Résoudre une équation ou inéquation",
+    desc : 'Résoudre $ax+b=c$',
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     variables: { a: { min: 2, max: 8 }, b: { min: 1, max: 15 }, c: { min: 1, max: 6 } },
     enonce: (v) => `Résoudre $${v.a}x + ${v.b} = ${v.a * v.c + v.b}$`,
@@ -240,7 +254,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Inéquation du 1er degré ── done
   {
-    id: "calc_014", theme: "calcul", groupe : "inequation",
+    id: "C5-C", theme: "calcul", groupe : "Résoudre une équation ou inéquation",
+    desc : 'Résoudre $ax+b>0$',
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     variables: { a: { min: 2, max: 8 }, b: { min: 1, max: 12 } },
     enonce: (v) => `Résoudre l'inéquation $${v.a}x - ${v.b} > 0$`,
@@ -256,7 +271,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Équation produit nul ── done
   {
-    id: "calc_015", theme: "calcul", groupe: 'equation',
+    id: "C5-D", theme: "calcul", groupe: 'Résoudre une équation ou inéquation',
+    desc : 'Résoudre $(x-a)(x+b)=0$',
     niveau: ["techno", "specifique", "specialite"], cols: 2,
     variables: { a: { min: 1, max: 8 }, b: { min: 1, max: 8 } },
     enonce: (v) => `Résoudre $(x - ${v.a})(x + ${v.b}) = 0$`,
@@ -269,7 +285,8 @@ const QUESTIONS_CALCUL = [
   },
 
   {
-    id: "cal_015b", theme: 'calcul', groupe: "équation",
+    id: "C5-E", theme: 'calcul', groupe: "Résoudre une équation ou inéquation",
+    desc : 'Résoudre $\\dfrac{x+a}{x-b}=0$',
     niveau: ["techno", "specifique", "specialite"], cols: 2,
     variables: { a: { min: 1, max: 5 }, b: { min: 6, max: 12 } },
     enonce: (v) => `Résoudre l'équation $\\dfrac{x + ${v.a}}{x - ${v.b}} = 0$`,
@@ -280,7 +297,8 @@ const QUESTIONS_CALCUL = [
 
   // ── Signe d'une expression du 1er degré ── done
   {
-    id: "calc_016", theme: "calcul",
+    id: "C6-A", theme: "calcul", groupe: "Déterminer le signe d’une expression",
+    desc : 'Signe de $ax+b$',
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     variables: { a: { min: 2, max: 7 }, b: { min: 2, max: 10 } },
     enonce: (v) => `Sur quel intervalle $${v.a}x - ${v.b}$ est-il strictement positif ?`,
@@ -293,22 +311,177 @@ const QUESTIONS_CALCUL = [
   },
 
   // ── Expression littérale : simplification ── done
-  {
-    id: "calc_017", theme: "calcul",
-    niveau: ["techno", "specifique"], cols: 4,
-    variables: { a: { min: 2, max: 7 }, b: { min: 1, max: 6 } },
-    enonce: (v) => `Simplifier $-(${v.a}x - ${v.b})$`,
-    bonneReponse: (v) => `$-${v.a}x + ${v.b}$`,
-    distracteurs: (v) => [
-      `$-${v.a}x - ${v.b}$`,
-      `$${v.a}x - ${v.b}$`,
-      `$${v.a}x + ${v.b}$`
-    ]
-  },
+//   {
+//     id: "C7-A", theme: "calcul", groupe : "Simplifier une expression littérale" ,
+//     niveau: ["techno", "specifique"], cols: 4,
+//     desc : 'Simplifier $-(ax-b)$',
+//     variables: { a: { min: 2, max: 7 }, b: { min: 1, max: 6 } },
+//     enonce: (v) => `Simplifier $-(${v.a}x - ${v.b})$`,
+//     bonneReponse: (v) => `$-${v.a}x + ${v.b}$`,
+//     distracteurs: (v) => [
+//       `$-${v.a}x - ${v.b}$`,
+//       `$${v.a}x - ${v.b}$`,
+//       `$${v.a}x + ${v.b}$`
+//     ]
+//   },
+
+
+//   // ── Simplifier une expression littérale ───────────────
+
+// {
+//   id: "C7-B", theme: "calcul",
+//   groupe: "Simplifier une expression littérale",
+//   niveau: ["techno", "specifique"], cols: 4,
+//   desc: "Simplifier $-(a + b)$",
+//   variables: { a: { min: 2, max: 9 }, b: { min: 2, max: 9 } },
+//   enonce: (v) => `Simplifier $-(${v.a} + ${v.b})$`,
+//   bonneReponse: (v) => `$-${v.a} - ${v.b}$`,
+//   distracteurs: (v) => [
+//     `$-${v.a} + ${v.b}$`,
+//     `$${v.a} + ${v.b}$`,
+//     `$${v.a} - ${v.b}$`,
+//   ]
+// },
+
+// {
+//   id: "C7-C", theme: "calcul",
+//   groupe: "Simplifier une expression littérale",
+//   niveau: ["techno", "specifique"], cols: 4,
+//   desc: "Simplifier $-(a - b)$",
+//   variables: { a: { min: 2, max: 9 }, b: { min: 2, max: 9 } },
+//   enonce: (v) => `Simplifier $-(${v.a} - ${v.b})$`,
+//   bonneReponse: (v) => `$${v.b} - ${v.a}$`,
+//   distracteurs: (v) => [
+//     `$-${v.a} - ${v.b}$`,
+//     `$${v.a} - ${v.b}$`,
+//     `$-${v.b} + ${v.a}$`,
+//   ]
+// },
+
+// {
+//   id: "C7-D", theme: "calcul",
+//   groupe: "Simplifier une expression littérale",
+//   niveau: ["techno", "specifique"], cols: 4,
+//   desc: "Simplifier $-(ax + b)$",
+//   variables: { a: { min: 2, max: 7 }, b: { min: 1, max: 9 } },
+//   enonce: (v) => `Simplifier $-(${v.a}x + ${v.b})$`,
+//   bonneReponse: (v) => `$-${v.a}x - ${v.b}$`,
+//   distracteurs: (v) => [
+//     `$-${v.a}x + ${v.b}$`,
+//     `$${v.a}x + ${v.b}$`,
+//     `$${v.a}x - ${v.b}$`,
+//   ]
+// },
+
+// {
+//   id: "C7-E", theme: "calcul",
+//   groupe: "Simplifier une expression littérale",
+//   niveau: ["techno", "specifique"], cols: 4,
+//   desc: "Simplifier $-(ax - b)$",
+//   variables: { a: { min: 2, max: 7 }, b: { min: 1, max: 6 } },
+//   enonce: (v) => `Simplifier $-(${v.a}x - ${v.b})$`,
+//   bonneReponse: (v) => `$-${v.a}x + ${v.b}$`,
+//   distracteurs: (v) => [
+//     `$-${v.a}x - ${v.b}$`,
+//     `$${v.a}x - ${v.b}$`,
+//     `$${v.a}x + ${v.b}$`,
+//   ]
+// },
+
+// {
+//   id: "C7-F", theme: "calcul",
+//   groupe: "Simplifier une expression littérale",
+//   niveau: ["techno", "specifique"], cols: 4,
+//   desc: "Simplifier $(-1) \\times x$",
+//   variables: { a: { values: ['x','y','a','b','m','n'] } },
+//   enonce: (v) => `Simplifier $(-1) \\times ${v.a}$`,
+//   bonneReponse: (v) => `$-${v.a}$`,
+//   distracteurs: (v) => [
+//     `$${v.a}$`,
+//     `$1 - ${v.a}$`,
+//     `$\\dfrac{${v.a}}{-1}$`,
+//   ]
+// },
+
+// {
+//   id: "C7-G", theme: "calcul",
+//   groupe: "Simplifier une expression littérale",
+//   niveau: ["techno", "specifique"], cols: 4,
+//   desc: "Simplifier $\\dfrac{0}{a}$",
+//   variables: { a: { min: 2, max: 9 } },
+//   enonce: (v) => `Simplifier $\\dfrac{0}{${v.a}}$`,
+//   bonneReponse: (v) => `$0$`,
+//   distracteurs: (v) => [
+//     `$${v.a}$`,
+//     `$\\dfrac{1}{${v.a}}$`,
+//     `Indéfini`,
+//   ]
+// },
+
+// {
+//   id: "C7-H", theme: "calcul",
+//   groupe: "Simplifier une expression littérale",
+//   niveau: ["techno", "specifique"], cols: 4,
+//   desc: "Simplifier $\\dfrac{1}{\\dfrac{1}{a}}$",
+//   variables: { a: { min: 2, max: 9 } },
+//   enonce: (v) => `Simplifier $\\dfrac{1}{\\dfrac{1}{${v.a}}}$`,
+//   bonneReponse: (v) => `$${v.a}$`,
+//   distracteurs: (v) => [
+//     `$\\dfrac{1}{${v.a}}$`,
+//     `$${v.a}^2$`,
+//     `$\\dfrac{1}{${v.a}^2}$`,
+//   ]
+// },
+
+// {
+//   id: "C7-I", theme: "calcul",
+//   groupe: "Simplifier une expression littérale",
+//   niveau: ["techno", "specifique"], cols: 2,
+//   desc: "Simplifier $\\dfrac{a/b}{c/d}$",
+//   variables: { a: { min: 2, max: 7 }, b: { min: 2, max: 7 }, c: { min: 2, max: 7 }, d: { min: 2, max: 7 } },
+//   enonce: (v) => `Simplifier $\\dfrac{\\dfrac{${v.a}}{${v.b}}}{\\dfrac{${v.c}}{${v.d}}}$`,
+//   bonneReponse: (v) => `$\\dfrac{${v.a} \\times ${v.d}}{${v.b} \\times ${v.c}}$`,
+//   distracteurs: (v) => [
+//     `$\\dfrac{${v.a} \\times ${v.c}}{${v.b} \\times ${v.d}}$`,
+//     `$\\dfrac{${v.a} \\times ${v.b}}{${v.c} \\times ${v.d}}$`,
+//     `$\\dfrac{${v.a}}{${v.b}} \\times \\dfrac{${v.c}}{${v.d}}$`,
+//   ]
+// },
+
+// {
+//   id: "C7-J", theme: "calcul",
+//   groupe: "Simplifier une expression littérale",
+//   niveau: ["techno", "specifique"], cols: 2,
+//   desc: "Calculer $\\dfrac{a}{b} \\div \\dfrac{c}{d}$",
+//   variables: { a: { min: 2, max: 6 }, b: { min: 2, max: 6 }, c: { min: 2, max: 6 }, d: { min: 2, max: 6 } },
+//   enonce: (v) => `$\\dfrac{${v.a}}{${v.b}} \\div \\dfrac{${v.c}}{${v.d}}$ est égal à :`,
+//   bonneReponse: (v) => `$\\dfrac{${v.a} \\times ${v.d}}{${v.b} \\times ${v.c}}$`,
+//   distracteurs: (v) => [
+//     `$\\dfrac{${v.a} \\times ${v.c}}{${v.b} \\times ${v.d}}$`,
+//     `$\\dfrac{${v.a}}{${v.b}} \\times \\dfrac{${v.c}}{${v.d}}$`,
+//     `$\\dfrac{${v.a} + ${v.d}}{${v.b} + ${v.c}}$`,
+//   ]
+// },
+
+// {
+//   id: "C7-K", theme: "calcul",
+//   groupe: "Simplifier une expression littérale",
+//   niveau: ["techno", "specifique"], cols: 2,
+//   desc: "Identifier l'égalité FAUSSE parmi $x = 1\\times x$, $x = x/1$...",
+//   variables: { a: { values: ['x','y','a','b','m','n'] } },
+//   enonce: (v) => `Laquelle de ces égalités est FAUSSE ?`,
+//   bonneReponse: (v) => `$${v.a} = \\dfrac{1}{${v.a}}$`,
+//   distracteurs: (v) => [
+//     `$${v.a} = 1 \\times ${v.a}$`,
+//     `$${v.a} = \\dfrac{${v.a}}{1}$`,
+//     `$${v.a} = \\dfrac{${v.a} \\times ${v.a}}{${v.a}}$`,
+//   ]
+// },
 
   // ── Équation x² = a ── done
   {
-    id: "calc_018", theme: "calcul", groupe : "id_rem",
+    id: "C5-F", theme: "calcul", groupe : "Résoudre une équation ou inéquation",
+    desc : 'Résoudre $x^2=a$',
     niveau: ["specifique", "specialite"], cols: 2,
     variables: { a: { min: 1, max: 9 } },
     enonce: (v) => `Résoudre $x^2 = ${v.a ** 2}$`,
@@ -321,8 +494,9 @@ const QUESTIONS_CALCUL = [
   },
   // ── Inverse du double d'un entier ──
   {
-    id: "calc_019", theme: "calcul", groupe : "fr->math",
+    id: "C8-A", theme: "calcul", groupe : "Passer du français aux mathématiques",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : 'L\'inverse du double',
     variables: { n: { min: 3, max: 9 } },
     enonce: (v) => `L'inverse du double de $${v.n}$ est égal à :`,
     bonneReponse: (v) => `$\\dfrac{1}{${2 * v.n}}$`,
@@ -333,8 +507,9 @@ const QUESTIONS_CALCUL = [
     ]
   },
   {
-    id: "calc_019b", theme: "calcul", groupe : "fr->math",
+    id: "C8-B", theme: "calcul", groupe : "Passer du français aux mathématiques",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : 'Le triple de l\'inverse',
     variables: { n: { min: 4, max: 8 } },
     enonce: (v) => `Le triple de l'inverse de $${v.n}$ est égal à :`,
     bonneReponse: (v) => '$'+frac(3,v.n)+'$',
@@ -348,7 +523,8 @@ const QUESTIONS_CALCUL = [
   // ── Calcul avec la relation F = a + b/(cd) ──
   // Valeurs fixées : a=1/2, b=3, c=4, d=-1/4 → F = 1/2 + 3/(4×(-1/4)) = 1/2 - 3 = -5/2
   {
-    id: "calc_020", theme: "calcul", groupe :'calcul_w/_frac',
+    id: "C1-D1", theme: "calcul", groupe :'Opérations et comparaisons de fractions',
+    desc : 'Calcul avec fractions I',
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     variables: {a : {min:2,max:8}, b : {min:2,max:9},c : {min:2,max:8}},
     enonce: (v) =>
@@ -363,7 +539,8 @@ const QUESTIONS_CALCUL = [
     ]
   },
   {
-    id: "calc_020b", theme: "calcul", groupe :'calcul_w/_frac',
+    id: "C1-D2", theme: "calcul", groupe :'Opérations et comparaisons de fractions',
+    desc : 'Calcul avec fractions II',
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     variables: {a : {min:2,max:8}, b : {min:2,max:7},c : {min:2,max:8}},
     enonce: function(v) {
@@ -378,7 +555,8 @@ const QUESTIONS_CALCUL = [
   },
 
   {
-    id: "calc_021_isol_var", theme: "calcul",
+    id: "C9-A", theme: "calcul", groupe :"Isoler une variable dans une égalité",
+    desc :"Isoler une variable",
     niveau: ["techno", "specifique", "specialite"], cols: 2,
     variables: { f: { values: [0, 1, 2, 3, 4, 5, 6, 7,8,9] } },
     enonce: (v) => {
@@ -481,8 +659,9 @@ const QUESTIONS_CALCUL = [
   // f(x) = a(x - r1)(x - r2) avec a, r1, r2 variés
   // On demande : sur quel intervalle f(x) > 0 (ou < 0)
   {
-    id: "calc_022", theme: "calcul",
-    groupe: "signe_second_degre",
+    id: "C6-B", theme: "calcul",
+    groupe: "Déterminer le signe d’une expression",
+    desc : 'Signe de $a(x-x_1)(x-x_2)$',
     niveau: ["specifique", "specialite"], cols: 2,
     variables: {
       r1:   { min: -5, max: 4 },   // racine gauche
@@ -551,8 +730,9 @@ const QUESTIONS_CALCUL = [
   },
 
 {
-  id: "calc_023", theme: "calcul",
-  groupe: "puissance",
+  id: "C2-C", theme: "calcul",
+  desc : 'Simplifier $\\dfrac{(ab)^n}{a^m}$',
+  groupe: "Opérations sur les puissances",
   niveau: ["techno", "specifique", "specialite"], cols: 2,
   variables: {
     a: { min: 6, max: 9 },   // exposant numérateur
@@ -578,8 +758,9 @@ const QUESTIONS_CALCUL = [
 },
 
 {
-  id: "calc_024", theme: "calcul",
-  groupe: "conversion_unite",
+  id: "C10-A", theme: "calcul",
+  groupe: "Effectuer des conversions d’unités",
+  desc: "Conversions d’unités I",
   niveau: ["techno", "specifique", "specialite"], cols: 2,
   variables: {
     situation: { values: [0, 1, 2, 3] }
@@ -650,8 +831,9 @@ const QUESTIONS_CALCUL = [
 },
 
 {
-  id: "calc_025", theme: "calcul",
-  groupe: "ordre de grandeur",
+  id: "C11-A", theme: "calcul",
+  groupe: "Estimer un ordre de grandeur",
+  desc: "Estimer un ordre de grandeur" ,
   niveau: ["techno", "specifique", "specialite"], cols: 4,
   variables: {
     situation: { values: [0,1,2,3] },
@@ -710,8 +892,9 @@ const QUESTIONS_CALCUL = [
 },
 
 {
-  id: "calc_026", theme: "calcul",
-  groupe: "puissances",
+  id: "C2-D", theme: "calcul",
+  desc : 'Trouver la bonne égalité',
+  groupe: "Opérations sur les puissances",
   niveau: ["techno", "specifique"], cols: 2,
   variables: {
     a: { min: 2, max: 9 },
@@ -735,8 +918,10 @@ const QUESTIONS_CALCUL = [
 },
 
 {
-  id: "calc_027", theme: "calcul",
-  groupe: "notation_scientifique_contexte",
+  id: "C11-B", theme: "calcul",
+  groupe: "Effectuer des conversions d’unités",
+  desc: "Conversions d’unités II",
+
   niveau: ["techno", "specifique", "specialite"], cols: 4,
   variables: {
     s: { values: [0, 1, 2, 3] },
@@ -787,8 +972,10 @@ const QUESTIONS_CALCUL = [
 },
 
 {
-  id: "calc_028", theme: "calcul",
-  groupe: "conversion_minutes_heures",
+  id: "C11-C", theme: "calcul",
+  groupe: "Effectuer des conversions d’unités",
+  desc: "Conversions d’unités III",
+
   niveau: ["techno", "specifique", "specialite"], cols: 4,
   variables: {
     // minutes choisies pour donner des résultats "pièges" sympas

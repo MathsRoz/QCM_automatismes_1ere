@@ -7,10 +7,11 @@ const QUESTIONS_STATS = [
 
   // ── Calculer une moyenne ──
   {
-    id: "stat_001", theme: "stats",
+    id: "S1_A", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : "Moyenne d\'une série",
     variables: { a: { min: 2, max: 9 }, b: { min: 2, max: 9 }, c: { min: 2, max: 9 }, d: { min: 2, max: 9 } },
-    enonce: (v) => `Moyenne de la série $${v.a} ; ${v.b} ; ${v.c} ; ${v.d}$`,
+    enonce: (v) => `Quelle est la moyenne de la série $${v.a} ; ${v.b} ; ${v.c} ; ${v.d}$`,
     bonneReponse: (v) => `$${((v.a + v.b + v.c + v.d) / 4)}$`,
     distracteurs: (v) => [
       `$${v.a + v.b + v.c + v.d}$`,
@@ -21,10 +22,11 @@ const QUESTIONS_STATS = [
 
   // ── Médiane d'une série paire ──
   {
-    id: "stat_002", theme: "stats", groupe : "mediane",
+    id: "S1-B1", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : "Médiane d\'une série paire",
     variables: { a: { min: 2, max: 5 }, b: { min: 6, max: 9 }, c: { min: 10, max: 14 }, d: { min: 15, max: 20 } },
-    enonce: (v) => `Médiane de la série $${v.a} ; ${v.b} ; ${v.c} ; ${v.d}$`,
+    enonce: (v) => `Quelle est la médiane de la série $${v.a} ; ${v.b} ; ${v.c} ; ${v.d}$`,
     bonneReponse: (v) => `$${(v.b + v.c) / 2}$`,
     distracteurs: (v) => [
       `$${v.b}$`,
@@ -35,10 +37,11 @@ const QUESTIONS_STATS = [
 
   // ── Médiane d'une série impaire ──
   {
-    id: "stat_003", theme: "stats", groupe : "mediane",
+    id: "S1_B2", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : "Médiane d\'une série impaire",
     variables: { a: { min: 1, max: 4 }, b: { min: 5, max: 9 }, c: { min: 10, max: 15 }, d: { min: 16, max: 21 }, e: { min: 22, max: 28 } },
-    enonce: (v) => `Médiane de la série $${v.a} ; ${v.b} ; ${v.c} ; ${v.d} ; ${v.e}$`,
+    enonce: (v) => `Quelle est la médiane de la série $${v.a} ; ${v.b} ; ${v.c} ; ${v.d} ; ${v.e}$`,
     bonneReponse: (v) => `$${v.c}$`,
     distracteurs: (v) => [
       `$${v.b}$`,
@@ -49,8 +52,9 @@ const QUESTIONS_STATS = [
 
   // ── Premier quartile Q1 ──
   {
-    id: "stat_004", theme: "stats",
+    id: "S1_C", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : "Calcul du premier quartile d'une série",
     variables: { a: { min: 1, max: 4 }, b: { min: 5, max: 8 }, c: { min: 9, max: 13 }, d: { min: 14, max: 18 }, e: { min: 19, max: 24 }, f: { min: 25, max: 30 } },
     enonce: (v) => `Série : $${v.a};${v.b};${v.c};${v.d};${v.e};${v.f}$. \n \\\\ Quel est $Q_1$ le premier quartile ?`,
     bonneReponse: (v) => `$${(v.b + v.c) / 2}$`,
@@ -61,25 +65,12 @@ const QUESTIONS_STATS = [
     ]
   },
 
-  // ── Fréquence relative ──
-  {
-    id: "stat_005", theme: "stats",
-    niveau: ["techno", "specifique", "specialite"], cols: 4,
-    variables: { n: { min: 20, max: 80, step:20 }, k: { min: 10, max: 90, step:10 } },
-    enonce: (v) => `Dans un groupe de $${v.n}$ personnes, $${v.n*v.k/100}$ portent des lunettes.\\\\ Quelle est la fréquence en $\\%$ des personnes portant des lunettes ?`,
-    bonneReponse: (v) => `$${(v.k)}\\%$`,
-    distracteurs: (v) => [
-      `$${100-v.k}\\%$`,
-      `$${((10000/v.k)%90).toFixed(0)}\\%$`,
-      `$${(100-(10000/v.k)%90).toFixed(0)}\\%$`
-    ]
-  },
-
  
   // ── Étendue d'une série ──
   {
-    id: "stat_007", theme: "stats",
+    id: "S1_D", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : 'Calcul de l\'étendue d\'une série',
     variables: { a: { min: 2, max: 6 }, b: { min: 7, max: 11 }, c: { min: 12, max: 16 }, d: { min: 17, max: 22 } },
     enonce: (v) => `Série $${v.a};${v.b};${v.c};${v.d}$. Quelle est l'étendue de la série ?`,
     bonneReponse: (v) => `$${v.d - v.a}$`,
@@ -92,8 +83,9 @@ const QUESTIONS_STATS = [
 
   // ── Moyenne pondérée ──
   {
-    id: "stat_008", theme: "stats",
+    id: "S1_E", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
     niveau: ["specifique", "specialite"], cols: 4,
+    desc : "Calcul d'une moyenne pondérée",
     variables: { n1 :{min:1,max:3},n2 :{min:2,max:3}},
     enonce: function(v) {
       v.n3=(10-v.n1-v.n2)
@@ -113,9 +105,10 @@ const QUESTIONS_STATS = [
   },
 
   {
-  id: 'stat_camembert_001', theme: 'stats',
-  groupe: 'lecture_camembert',
+  id: 'S2_A', theme: 'stats',
+  groupe: 'Lire et commenter des graphiques usuels',
   niveau: ['techno', 'specifique', 'specialite'], cols: 4,
+  desc : "Identifier le bon diagramme circulaire" ,
   variables: {
     s: { values: [0,1,2,3] },
     n:{values:[60,120,180]} 

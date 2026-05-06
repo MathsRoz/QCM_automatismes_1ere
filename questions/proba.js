@@ -7,8 +7,9 @@ const QUESTIONS_PROBA = [
 
   // ── Probabilité de l'événement contraire ── done
   {
-    id: "proba_001", theme: "proba", 
+    id: "P1-A", theme: "proba", groupe : "Calculer la probabilité de l’événement contraire",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : "Déterminer $P\\left( \\bar{A} \\right)$ sachant P(A)",
     variables: { p: { min: 1, max: 9 } },
     enonce: (v) => `Si $P(A) = ${v.p / 10}$, alors $P(\\bar{A}) = ?$`,
     bonneReponse: (v) => `$${(1 - v.p / 10).toFixed(1)}$`,
@@ -21,8 +22,9 @@ const QUESTIONS_PROBA = [
 
   // ── Probabilité d'une issue sur un dé ── done
   {
-    id: "proba_002", theme: "proba", groupe:"de",
+    id: "P2-A", theme: "proba", groupe:"Calcul de probabilité dans une situation d'équiprobabilité",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : "Déterminer la probabilité de tomber sur une face",
     variables: { n: { min: 2, max: 6 } },
     enonce: (v) => `On lance un dé à $6$ faces équilibré. Quelle est la probabilité d'obtenir $${v.n} ?$`,
     bonneReponse: (v) => `$\\dfrac{1}{6}$`,
@@ -35,8 +37,9 @@ const QUESTIONS_PROBA = [
 
   // ── Probabilité d'un multiple sur un dé ── done
   {
-    id: "proba_003", theme: "proba", groupe:"de",
+    id: "P2-B", theme: "proba", groupe:"Calcul de probabilité dans une situation d'équiprobabilité",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : "Déterminer la probabilité de tomber sur un multiple de $a$",
     variables: { k: { min: 2, max: 5} },
     enonce: (v) => {
       const fav = [1, 2, 3, 4, 5, 6].filter(x => x % v.k === 0);
@@ -59,8 +62,9 @@ const QUESTIONS_PROBA = [
 
   // ── Probabilité d'une issue sur un dé ── done
   {
-    id: "proba_003b", theme: "proba", groupe:"de",
+    id: "P2-C", theme: "proba", groupe:"Calcul de probabilité dans une situation d'équiprobabilité",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : "Déterminer la probabilité de tomber sur un résulat superieur à $a$",
     variables: { n: { min: 2, max: 5 } },
     enonce: (v) => `On lance un dé à $6$ faces équilibré. Quelle est la probabilité d'obtenir un résultat supérieur ou égal à $${v.n} ?$`,
     bonneReponse: (v) => `$`+frac(7-v.n,6)+'$',
@@ -73,8 +77,9 @@ const QUESTIONS_PROBA = [
 
   // ── Événements indépendants : P(A∩B) ── done
   {
-    id: "proba_004", theme: "proba",
-    niveau: ["specifique", "specialite"], cols: 4,
+    id: "P3-A", theme: "proba",groupe: "Probabilités conditionnelles",
+    niveau: [ "specialite"], cols: 4,
+    desc : "Déterminer $P(A \\cap B)$ avec $A$ et $B$ indépendants",
     variables: { p: { min: 1, max: 4 }, q: { min: 1, max: 4 } },
     enonce: (v) => `$A$ et $B$ sont indépendants, $P(A) = \\dfrac{${v.p}}{10}$, $P(B) = \\dfrac{${v.q}}{10}$. Calculer $P(A \\cap B)$`,
     bonneReponse: (v) => `$\\dfrac{${v.p * v.q}}{100}$`,
@@ -87,10 +92,11 @@ const QUESTIONS_PROBA = [
 
   // ── Tirage sans remise : bille colorée ── done
   {
-    id: "proba_005", theme: "proba",
+    id: "P2-D", theme: "proba", groupe:"Calcul de probabilité dans une situation d'équiprobabilité",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : "Déterminer la probabilité de tirer une boule dans une urne",
     variables: { a: { min: 2, max: 7 }, b: { min: 2, max: 7 }, c: { min: 2, max: 7 } },
-    enonce: (v) => `Un sac contient $${v.a}$ billes rouges, $${v.b}$ bleues, $${v.c}$ vertes.  On tire une bille. \n \\\\ Quelle est la probabilité de tirer une boule rouge ?`,
+    enonce: (v) => `Une urne contient $${v.a}$ billes rouges, $${v.b}$ bleues, $${v.c}$ vertes.  On tire une bille. \n \\\\ Quelle est la probabilité de tirer une boule rouge ?`,
     bonneReponse: (v) => {
       const tot = v.a + v.b + v.c;
       return `$${frac(v.a,tot)}$`;
@@ -105,24 +111,11 @@ const QUESTIONS_PROBA = [
     }
   },
 
-  // ── Probabilité conditionnelle (tableau croisé) ──
-  // {
-  //   id: "proba_006", theme: "proba",
-  //   niveau: ["specifique", "specialite"], cols: 2,
-  //   variables: { ab: { min: 10, max: 30 }, anb: { min: 5, max: 20 }, nb: { min: 10, max: 25 }, nnb: { min: 5, max: 20 } },
-  //   enonce: (v) => `Tableau croisé : parmi $${v.ab + v.anb}$ individus ayant $A$, $${v.ab}$ ont aussi $B$. Calculer $P_A(B)$ (au centième)`,
-  //   bonneReponse: (v) => `$${(v.ab / (v.ab + v.anb)).toFixed(2)}$`,
-  //   distracteurs: (v) => [
-  //     `$${(v.anb / (v.ab + v.anb)).toFixed(2)}$`,
-  //     `$${(v.ab / (v.ab + v.nb + v.anb + v.nnb)).toFixed(2)}$`,
-  //     `$${(v.ab / (v.ab + v.nb)).toFixed(2)}$`
-  //   ]
-  // },
-
   // ── Distinguer P(A∩B), PA(B), PB(A) ── done
   {
-    id: "proba_007", theme: "proba", groupe: "conditionnelles",
-    niveau: ["specifique", "specialite"], cols: 4,
+    id: "P3-B", theme: "proba", groupe: "Probabilités conditionnelles",
+    niveau: ["techno","specifique", "specialite"], cols: 4,
+    desc : "Calculer $P_B(A)$ I",
     variables: { p: { min: 2, max: 8 } },
     enonce: (v) => `$P(A \\cap B) = \\dfrac{${v.p}}{100}$ et $P(B) = \\dfrac{${v.p * 4}}{100}$. Calculer $P_B(A)$`,
     bonneReponse: (v) => `$\\dfrac{1}{4}$`,
@@ -133,23 +126,25 @@ const QUESTIONS_PROBA = [
     ]
   },
 
-  // ── Probabilité somme des issues ── done
-  {
-    id: "proba_008", theme: "proba",
-    niveau: ["techno", "specifique", "specialite"], cols: 4,
-    variables: { p1: { min: 1, max: 3 }, p2: { min: 1, max: 3 }, den: { min: 8, max: 12 } },
-    enonce: (v) => `$P(A) = \\dfrac{${v.p1}}{${v.den}}$ et $P(B) = \\dfrac{${v.p2}}{${v.den}}$, $A$ et $B$ incompatibles. $P(A \\cup B) = ?$`,
-    bonneReponse: (v) => `$${frac(v.p1 + v.p2, v.den)}$`,
-    distracteurs: (v) => [
-      `$\\dfrac{${v.p1 * v.p2}}{${v.den * v.den}}$`,
-      `$\\dfrac{${v.p1 + v.p2}}{${v.den * 2}}$`,
-      `$\\dfrac{${v.den - v.p1 - v.p2}}{${v.den}}$`
-    ]
-  },
+  // // ── Probabilité somme des issues ── done
+  // {
+  //   id: "proba_008", theme: "proba",
+  //   niveau: ["techno", "specifique", "specialite"], cols: 4,
+  //   desc :"Déterminer $P(A \\cup B)$ sachant que A et B sont incompatibles",
+  //   variables: { p1: { min: 1, max: 3 }, p2: { min: 1, max: 3 }, den: { min: 8, max: 12 } },
+  //   enonce: (v) => `$P(A) = \\dfrac{${v.p1}}{${v.den}}$ et $P(B) = \\dfrac{${v.p2}}{${v.den}}$, $A$ et $B$ incompatibles. $P(A \\cup B) = ?$`,
+  //   bonneReponse: (v) => `$${frac(v.p1 + v.p2, v.den)}$`,
+  //   distracteurs: (v) => [
+  //     `$\\dfrac{${v.p1 * v.p2}}{${v.den * v.den}}$`,
+  //     `$\\dfrac{${v.p1 + v.p2}}{${v.den * 2}}$`,
+  //     `$\\dfrac{${v.den - v.p1 - v.p2}}{${v.den}}$`
+  //   ]
+  // },
   
     {
-    id: "proba_009", theme: "proba",
+    id: "P4-A", theme: "proba", groupe:"Calcul de probabilité dans un arbre",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : " Calcul de $P(A\\cap B)$" ,
     variables: { p1: { min: 1, max: 9 }, p2: { min: 1, max: 9 }, p3: { min: 1, max: 9 } },
     enonce: function(v) {
      
@@ -191,8 +186,9 @@ const QUESTIONS_PROBA = [
   },
 
   {
-    id: "proba_010", theme: "proba",groupe:"proba_totale",
+    id: "P4-B", theme: "proba", groupe:"Calcul de probabilité dans un arbre",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
+    desc : "Calcul d'une probabilité total I",
     variables: { p1: { min: 1, max: 9 }, p2: { min: 1, max: 9 }, p3: { min: 1, max: 9 } },
     enonce: function(v) {
      
@@ -233,7 +229,8 @@ const QUESTIONS_PROBA = [
   },
 
   {
-    id: "proba_010b", theme: "proba", groupe:"proba_totale",
+    id: "P4-C", theme: "proba",  groupe : "Calcul de probabilité dans un arbre",
+    desc : "Calcul d'une probabilité total II",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     variables: { p1: { min: 1, max: 9 }, p2: { min: 1, max: 9 }, p3: { min: 1, max: 9 } },
     enonce: function(v) {
@@ -277,7 +274,7 @@ const QUESTIONS_PROBA = [
   
 
   {
-    id: "proba_011", theme: "proba", groupe:"de",
+    id: "P2-E", theme: "proba", groupe:"Calcul de probabilité dans une situation d'équiprobabilité",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     variables: { n: { min: 1, max: 4 },s:{min:0,max:3} },
     enonce: function(v) { 
@@ -294,7 +291,8 @@ const QUESTIONS_PROBA = [
   },
 
   {
-    id: "proba_012", theme: "proba",groupe: "conditionnelles",
+    id: "P5-A", theme: "proba", groupe:"Calcul de probabilité dans un tableau",
+    desc : "Calculer une probabilité conditionnelle ",
     niveau: ["specifique", "specialite"], cols: 4,
     variables: { p: { values :[5,10,20,25,30,15] },
                 a:{min:2,max:4},
@@ -338,8 +336,9 @@ const QUESTIONS_PROBA = [
   },
 
   {
-    id: "proba_013", theme: "proba",groupe:"proba_totale",
+    id: "P4-D", theme: "proba", groupe:"Calcul de probabilité dans un arbre",
     niveau: ["specialite"], cols: 4,
+    desc : "Calcul de la probabilité d'une intersection",
     variables: { p1: { min: 1, max: 9 }, p2: { min: 1, max: 9 }, p3: { min: 1, max: 9 } },
     enonce: function(v) {
      
@@ -382,8 +381,9 @@ const QUESTIONS_PROBA = [
 
 
   {
-    id: "prob_014", theme: 'proba', groupe: "conditionnelles",
+    id: "P3-C", theme: 'proba', groupe: "Probabilités conditionnelles",
     niveau: ["specialite"], cols: 4,
+    desc : "Calculer $P_B(A)$ II",
     variables: { pA: { min: 1, max: 9 }, pBs: { min: 1, max: 9 } }, // pA en dixièmes
     enonce: (v) => `On donne $P(A) = ${v.pA/10}$ et $P(A \\cap B) = ${v.pBs*v.pA/100}$. Calculer $P_A(B)$.`,
     bonneReponse: (v) => `$${v.pBs/10}$`,
