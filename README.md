@@ -201,13 +201,12 @@ Les marges internes sont configurables via `Fig._PAD = { l, r, t, b }`.
 | `simplExpr(s)` | Simplifie les expressions algébriques (1x → x, +0 → …) |
 | `dedupeAnswers(template, vars)` | Régénère les variables jusqu'à éliminer les doublons entre bonne réponse et distracteurs |
 | `fimage(a, expr)` | Image d'un nombre par une expression |
-| `makeTable(rows, opts)` | Génère un tableau HTML + LaTeX à partir d'un tableau de lignes |
 
 ---
 
 ## Seed et reproductibilité
 
-Chaque QCM généré reçoit une **seed** affichée comme badge `🎲 XXXXXXXXX`. Cliquer dessus copie un lien du type :
+Chaque QCM généré reçoit une **seed**. Cliquer `Copier le lien` ou le Qrcode après génération créé un lien du type :
 
 ```
 index.html?seed=482759301&level=specialite&inclusive=1&n=12&themes=calcul,proba
