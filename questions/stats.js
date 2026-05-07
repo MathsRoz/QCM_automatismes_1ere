@@ -7,7 +7,7 @@ const QUESTIONS_STATS = [
 
   // ── Calculer une moyenne ──
   {
-    id: "S1_A", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
+    id: "S1-A", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     desc : "Moyenne d\'une série",
     variables: { a: { min: 2, max: 9 }, b: { min: 2, max: 9 }, c: { min: 2, max: 9 }, d: { min: 2, max: 9 } },
@@ -37,7 +37,7 @@ const QUESTIONS_STATS = [
 
   // ── Médiane d'une série impaire ──
   {
-    id: "S1_B2", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
+    id: "S1-B2", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     desc : "Médiane d\'une série impaire",
     variables: { a: { min: 1, max: 4 }, b: { min: 5, max: 9 }, c: { min: 10, max: 15 }, d: { min: 16, max: 21 }, e: { min: 22, max: 28 } },
@@ -52,7 +52,7 @@ const QUESTIONS_STATS = [
 
   // ── Premier quartile Q1 ──
   {
-    id: "S1_C", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
+    id: "S1-C", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     desc : "Calcul du premier quartile d'une série",
     variables: { a: { min: 1, max: 4 }, b: { min: 5, max: 8 }, c: { min: 9, max: 13 }, d: { min: 14, max: 18 }, e: { min: 19, max: 24 }, f: { min: 25, max: 30 } },
@@ -68,7 +68,7 @@ const QUESTIONS_STATS = [
  
   // ── Étendue d'une série ──
   {
-    id: "S1_D", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
+    id: "S1-D", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
     niveau: ["techno", "specifique", "specialite"], cols: 4,
     desc : 'Calcul de l\'étendue d\'une série',
     variables: { a: { min: 2, max: 6 }, b: { min: 7, max: 11 }, c: { min: 12, max: 16 }, d: { min: 17, max: 22 } },
@@ -83,7 +83,7 @@ const QUESTIONS_STATS = [
 
   // ── Moyenne pondérée ──
   {
-    id: "S1_E", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
+    id: "S1-E", theme: "stats", groupe : "Calculer et interpréter des indicateurs statistique pour une série statistique",
     niveau: ["specifique", "specialite"], cols: 4,
     desc : "Calcul d'une moyenne pondérée",
     variables: { n1 :{min:1,max:3},n2 :{min:2,max:3}},

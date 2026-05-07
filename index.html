@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RJQ37XCSY9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-RJQ37XCSY9');
-</script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QCM Automatismes Mathématiques — Première</title>
+<link rel="icon" type="image/svg+xml" href="check-square.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playpen+Sans+Arabic:wght@100..800&display=swap" rel="stylesheet">
@@ -24,7 +16,7 @@
 <link rel="stylesheet" href="style.css">
 <style>
 /* ─── MAIN ─── */
-main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 20px 20px 80px; }
+main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 20px 20px 0px 20px; }
 
 /* ─── VIEW TRANSITIONS ─── */
 .view { display: none; animation: slideIn 0.3s cubic-bezier(0.16,1,0.3,1); }
@@ -47,6 +39,9 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
 /* ─── THEME CARDS ─── */
 .theme-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
 .theme-card {
+  text-align: center;
+  align-items: center;
+  justify-items: center;
   background: var(--card); border: 2px solid var(--border2);border-color: var(--card); 
   border-radius: var(--radius); padding: 18px 20px;
   cursor: pointer; position: relative; overflow: hidden;
@@ -64,13 +59,13 @@ main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding
 .theme-card.selected { border: 2px solid var(--border2); border-color: var(--accent, var(--blue)); }
 .theme-card.selected::after { transform: scaleX(1); }
 .theme-icon {
-  width: 36px; height: 36px; border-radius: 9px;
-  background: var(--icon-bg, rgba(217,119,87,0.15));
+  width: 36px; height: 36px; border-radius: 6px;
+  background: var(--icon-bg);
   display: flex; align-items: center; justify-content: center;
   font-size: 18px; margin-bottom: 12px;
 }
-.theme-name { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
-.theme-desc { font-size: 12px; color: var(--text2); line-height: 1.4; }
+.theme-name { display:flex; font-size:14px; font-weight: 600; margin-bottom: 3px;}
+.theme-desc { font-size: 12px; color: var(--text2); line-height: 1.4;}
 
 /* ─── LEVEL BUTTONS ─── */
 .level-section { margin-bottom: 28px; }
@@ -386,6 +381,7 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
   .export-btns { flex-direction: column; }
   .export-btns .btn { width: 100%; justify-content: center; }
 }
+
 /* ─── MODE PRÉSENTATION → presentation.css ─── */
 </style>
 <link rel="stylesheet" href="presentation.css">
@@ -395,7 +391,7 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 <header>
   <div class="logo">
     <!-- <div class="logo-badge"> </div> -->
-    <div class="logo-text">QCM Maths <span>Première</span></div>
+    <div class="logo-text">QCM Maths <span>Automatismes Première </span></div>
   </div>
   <button id="themeToggle" onclick="toggleThemeMode()" style="
     background:none; border:none; cursor:pointer; font-size:18px;
@@ -446,33 +442,33 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
     
     <div class="level-label">Thèmes <span style="font-size:11px;color:var(--text3);text-transform:none;font-weight:400;margin-left:6px;"> Si aucun thème n’est sélectionné, tous les thèmes seront automatiquement pris en compte. </span></div>
     <div class="theme-grid" style="grid-template-columns:1fr 1fr 1fr;">
-      <div class="theme-card" data-theme="calcul" style="--accent:var(--blue);--icon-bg:rgba(137, 175, 200, 0.15);" onclick="toggleTheme(this)">
-        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calculator-icon lucide-calculator"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></div>
+      <div class="theme-card" data-theme="calcul" style="--accent:var(--blue);--icon-bg:var(--blue);" onclick="toggleTheme(this)">
+        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--bg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calculator-icon lucide-calculator"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></div>
         <div class="theme-name">Calcul numérique et algébrique</div>
         <div class="theme-desc">Fractions, puissances, identités, équations, inéquations</div>
       </div>
-      <div class="theme-card" data-theme="proportions" style="--accent: var(--pur);--icon-bg:rgba(167,139,250,0.15)" onclick="toggleTheme(this)">
-        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-percent-icon lucide-percent"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+      <div class="theme-card" data-theme="proportions" style="--accent: var(--pur);--icon-bg:var(--pur)" onclick="toggleTheme(this)">
+        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--bg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-percent-icon lucide-percent"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
         <div class="theme-name">Proportions et pourcentages</div>
         <div class="theme-desc">Fractions, pourcentages, proportionnalité</div>
       </div>
-      <div class="theme-card" data-theme="evolutions" style="--accent:var(--yellow);--icon-bg:rgba(201,165,90,0.15)" onclick="toggleTheme(this)">
-        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up-down-icon lucide-trending-up-down"><path d="M14.828 14.828 21 21"/><path d="M21 16v5h-5"/><path d="m21 3-9 9-4-4-6 6"/><path d="M21 8V3h-5"/></svg></div>
+      <div class="theme-card" data-theme="evolutions" style="--accent:var(--yellow);--icon-bg:var(--yellow)" onclick="toggleTheme(this)">
+        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--bg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up-down-icon lucide-trending-up-down"><path d="M14.828 14.828 21 21"/><path d="M21 16v5h-5"/><path d="m21 3-9 9-4-4-6 6"/><path d="M21 8V3h-5"/></svg></div>
         <div class="theme-name">Évolutions et variations</div>
         <div class="theme-desc">Taux d'évolution, coefficient multiplicateur, évolutions successives</div>
       </div>
-      <div class="theme-card" data-theme="fonctions" style="--accent:var(--green);--icon-bg:rgba(52,211,153,0.15)" onclick="toggleTheme(this)">
-        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-spline-icon lucide-chart-spline"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7"/></svg></div>
+      <div class="theme-card" data-theme="fonctions" style="--accent:var(--green);--icon-bg:var(--green)" onclick="toggleTheme(this)">
+        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--bg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-spline-icon lucide-chart-spline"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7"/></svg></div>
         <div class="theme-name">Fonctions et représentations</div>
         <div class="theme-desc">Fonctions affines, images, antécédents, droites</div>
       </div>
-      <div class="theme-card" data-theme="stats" style="--accent:var(--red);--icon-bg:rgba(248,113,113,0.15)" onclick="toggleTheme(this)">
-        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-column-big-icon lucide-chart-column-big"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><rect x="15" y="5" width="4" height="12" rx="1"/><rect x="7" y="8" width="4" height="9" rx="1"/></svg></div>
+      <div class="theme-card" data-theme="stats" style="--accent:var(--red);--icon-bg:var(--red)" onclick="toggleTheme(this)">
+        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--bg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-column-big-icon lucide-chart-column-big"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><rect x="15" y="5" width="4" height="12" rx="1"/><rect x="7" y="8" width="4" height="9" rx="1"/></svg></div>
         <div class="theme-name">Statistiques</div>
         <div class="theme-desc">Moyenne, médiane, quartiles, boîtes à moustaches</div>
       </div>
-      <div class="theme-card" data-theme="proba" style="--accent:var(--cyan);--icon-bg:rgba(56,189,248,0.15)" onclick="toggleTheme(this)">
-        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dices-icon lucide-dices"><rect width="12" height="12" x="2" y="10" rx="2" ry="2"/><path d="m17.92 14 3.5-3.5a2.24 2.24 0 0 0 0-3l-5-4.92a2.24 2.24 0 0 0-3 0L10 6"/><path d="M6 18h.01"/><path d="M10 14h.01"/><path d="M15 6h.01"/><path d="M18 9h.01"/></svg></div>
+      <div class="theme-card" data-theme="proba" style="--accent:var(--cyan);--icon-bg:var(--cyan)" onclick="toggleTheme(this)">
+        <div class="theme-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--bg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dices-icon lucide-dices"><rect width="12" height="12" x="2" y="10" rx="2" ry="2"/><path d="m17.92 14 3.5-3.5a2.24 2.24 0 0 0 0-3l-5-4.92a2.24 2.24 0 0 0-3 0L10 6"/><path d="M6 18h.01"/><path d="M10 14h.01"/><path d="M15 6h.01"/><path d="M18 9h.01"/></svg></div>
         <div class="theme-name">Probabilités</div>
         <div class="theme-desc">Événements, probabilités conditionnelles, arbres</div>
       </div>
@@ -592,6 +588,56 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
     </div>
   </div>
 </main>
+
+  <footer>
+
+   
+
+        <div>
+            © 2026 Mathsroz
+        </div>
+        <span>•</span>
+        <div style="display:flex; gap:12px; justify-content:center;align-items: center;">
+
+            <a href="mentions-legales.html" style="color:inherit; " >Mentions légales</a>
+          </div>
+            <span>•</span>
+        
+        <div>
+            <a href="https://github.com/mathsroz/QCM_automatismes_1ere"
+               target="_blank"
+               style="display:flex; align-items:center; gap:6px; color:inherit;">
+
+                <!-- Icône GitHub -->
+                <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38
+                    0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+                    -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87
+                    2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
+                    0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12
+                    0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 1.36.09 2 .27
+                    1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15
+                    0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48
+                    0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8
+                    c0-4.42-3.58-8-8-8Z"/>
+                </svg>
+
+                Code source
+            </a>
+
+        </div>
+        <span>•</span>
+        <div>
+            Licence GNU AGPL v3
+        </div>
+        <span>•</span>
+        <div>
+            Aucune donnée collectée
+        </div>
+
+
+</footer>
+
 
 <div id="toast"></div>
 

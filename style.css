@@ -83,13 +83,10 @@ body {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
-  overflow-x: hidden;
 }
 body::before {
   content: '';
   position: fixed; inset: 0;
-  background:
-    linear-gradient( var(--bg),rgba(91, 114, 163, 0.199) 20, transparent 60%);
   pointer-events: none; z-index: 0;
 }
 ::-webkit-scrollbar { width: 5px; }
@@ -99,10 +96,10 @@ body::before {
 /* ─── HEADER ─── */
 header {
   position: sticky; top: 0; z-index: 100;
-  background: var(--bg);
-  backdrop-filter: blur(20px);
+  background: linear-gradient(30deg, var(--card),var(--bg));
   border-bottom: 1px solid var(--border2);
   padding: 0 24px;
+  gap: 24px;
   height: 62px;
   display: flex; align-items: center; gap: 24px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
@@ -179,3 +176,16 @@ header {
 /* ─── FIGURES ─── */
 .fig-wrap { display: flex; justify-content: center; margin: 3px 0; }
 .fig-wrap svg { max-width: 100%; height: auto; border-radius: 6px; overflow: visible; }
+
+footer{
+  display: flex; 
+  justify-content: center;align-items: center;
+  color: var(--accent);
+  font-family: 'DM sans', sans-serif;
+  font-size: 8pt;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+  z-index: 1;
+}
+
