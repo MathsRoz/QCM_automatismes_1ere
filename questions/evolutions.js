@@ -176,7 +176,7 @@ const QUESTIONS_EVOLUTIONS = [
     variables: { t: { min: 10, max: 30 ,step:10} },
     enonce: (v) =>{
       if(v.t===0)(v.t=-17)
-      return `Le prix d’un article est noté $P$. Il connait deux augmentations de ${v.t}%.
+      return `Le prix d’un article est noté $P$. Il connait deux augmentations de $${v.t}\\%$.
 Le prix après ces augmentations est:`},
     bonneReponse: (v) => `$P\\times ${(1+v.t/100).toFixed(1)}^2$`,
     distracteurs: (v) => [

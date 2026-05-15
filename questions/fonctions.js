@@ -539,8 +539,8 @@ const QUESTIONS_FONCTIONS = [
     },
     enonce: function(v) {
       if (v._deduping) return '';
-      var s1 = (v.a*v.b<0) ? '+' : '-';
-      var s2 = (v.a*v.b>0) ? '+' : '-';
+      var s1 = (v.a>0) ? '+' : '-';
+      var s2 = (v.a<0) ? '+' : '-';
 
       var svg = Fig.svg(.6, 6.5, -1.5, -.5)
         .tableauS([['x','-∞',v.b,'+∞'],['f(x)',s1,'0',s2]]).end();
