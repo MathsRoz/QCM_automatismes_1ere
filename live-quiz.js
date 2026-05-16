@@ -290,7 +290,9 @@
     const state = getQCMState();
     connections.forEach(s => {
       const sc = computeScore(s, state, liveState.totalQ - 1);
-      s.conn.send({ type:'end', score:sc, total:liveState.totalQ });
+      const correct = state.generatedQuestions.reduce((n, q, qi) =>
+        n + (s.answers[qi] && s.answers[qi].idx === q.bonneIdx ? 1 : 0), 0);
+      s.conn.send({ type:'end', score:sc, correct, total:liveState.totalQ });
     });
 
     if (btnstate !== 'end') {

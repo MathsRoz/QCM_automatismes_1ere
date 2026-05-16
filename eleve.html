@@ -154,7 +154,7 @@ function handleMessage(msg) {
     switch (msg.type) {
         case 'question': showQuestion(msg); break;
         case 'reveal':   revealAnswers(msg); break;
-        case 'end':      showEnd(msg.score, msg.total); break;
+        case 'end':      showEnd(msg.score, msg.correct, msg.total); break;
     }
 }
 
@@ -262,12 +262,12 @@ function showFeedback(correct) {
     else { b.className = 'feedback-banner show-wrong'; b.textContent = 'Pas de réponse'; }
 }
 
-function showEnd(serverScore, total) {
+function showEnd(serverScore, correct, total) {
     clearTimer();
-    const s = serverScore !== undefined ? serverScore : score;
     const totalCount = total || totalQ;
-    document.getElementById('endScore').textContent = s + '/' + totalCount;
-    document.getElementById('endLabel').textContent = 'Quiz terminé — ' + Math.round(s / totalCount * 100) + '% de bonnes réponses';
+    const bonnes = correct !== undefined ? correct : score;
+    document.getElementById('endScore').textContent = bonnes + '/' + totalCount;
+    document.getElementById('endLabel').textContent = 'Quiz terminé — ' + Math.round(bonnes / totalCount * 100) + '% de bonnes réponses';
     showScreen('end');
 }
 
