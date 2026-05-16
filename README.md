@@ -1,4 +1,4 @@
-# QCM Mathématiques — Première
+# QCM Mathématiques (pas à jour) — Première
 
 Générateur de QCM interactif pour les **automatismes de Première** (BO 2025, session 2027), conçu pour les professeurs et les élèves.
 
