@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playpen+Sans+Arabic:wght@100..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style/style.css">
 <link rel="stylesheet" href="style/presentation.css">
+<link rel="stylesheet" href="style/live-quiz.css">
 <style>
 /* ─── LAYOUT ─── */
 header {
@@ -545,20 +546,28 @@ const SIDEBAR = (function() {
     const bottom = document.createElement('div');
     bottom.style.cssText = 'padding:10px;border-top:1px solid var(--border2);display:flex;gap:6px;flex-shrink:0;background:var(--card);';
 
+    const btnLive = document.createElement('button');
+    btnLive.className = 'btn-compile-sel';
+    btnLive.style.flex = '1';
+    btnLive.disabled = selIds.length === 0;
+    btnLive.innerHTML = 'Classe live';
+    btnLive.onclick = () => { buildQuestionsFromSelection(); LiveQuiz.openLiveModal(); };
+
     const btnPres = document.createElement('button');
     btnPres.className = 'btn-compile-sel';
     btnPres.style.flex = '1';
     btnPres.disabled = selIds.length === 0;
-    btnPres.innerHTML = '🖥️ Présenter' + (selIds.length > 0 ? ` <span style="opacity:.7">(${selIds.length})</span>` : '');
+    btnPres.innerHTML = 'Présenter';
     btnPres.onclick = () => window.startPresentation();
 
     const btnCompile = document.createElement('button');
     btnCompile.className = 'btn-compile-sel';
     btnCompile.style.flex = '1';
     btnCompile.disabled = selIds.length === 0;
-    btnCompile.innerHTML = '📄 Compiler' + (selIds.length > 0 ? ` <span style="opacity:.7">(${selIds.length})</span>` : '');
+    btnCompile.innerHTML = 'Compiler' + (selIds.length > 0 ? ` <span style="opacity:.7">(${selIds.length})</span>` : '');
     btnCompile.onclick = () => window.openCompileModal();
 
+    bottom.appendChild(btnLive);
     bottom.appendChild(btnPres);
     bottom.appendChild(btnCompile);
     aside.appendChild(bottom);
@@ -595,6 +604,7 @@ window._mountSidebar  = function() { SIDEBAR.render(); };
 <script src="questions/autre.js"></script>
 <script src="compiler.js"></script>
 <script src="presentation.js"></script>
+<script src="live-quiz.js"></script>
 
 <script>
 // ═══════════════════════════════════════════════════
@@ -931,11 +941,16 @@ function buildQuestionsFromSelection() {
       bonne    = q.bonneReponse({...vars});
       reponses = q.distracteurs({...vars});
     } catch(e) { enonce = '% Erreur: ' + e.message; }
+    const allReponses = shuffle([bonne, ...reponses.slice(0,3)]);
+    const bonneIdx = allReponses.indexOf(bonne);
     questions.push({
-      enonce, reponses: shuffle([bonne, ...reponses.slice(0,3)]),
-      bonneReponse: bonne, cols: q.cols
+      enonce, reponses: allReponses,
+      bonneReponse: bonne, cols: q.cols,
+      templateId: q.id, vars: {...vars}, bonneIdx,
     });
   });
+  // Exposer pour live-quiz.js
+  window.state = { generatedQuestions: questions };
   return questions;
 }
 

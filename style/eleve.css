@@ -61,7 +61,6 @@ body {
 /* ── REJOINDRE ── */
 .join-card { 
     background: var(--card); 
-    border: 1px solid var(--border); 
     border-radius: var(--radius); 
     padding: 28px 24px; 
     width: 100%; 
@@ -89,7 +88,7 @@ body {
 }
 .code-input {
     width: 100%; padding: 14px 16px; border-radius: var(--radius2);
-    background: var(--card2); border: 1.5px solid var(--border);
+    background: var(--card2); border: 2px solid var(--card2);
     color: var(--text2); font-family: var(--mono); font-size: 24px; font-weight: 500;
     letter-spacing: .15em; text-align: center; text-transform: uppercase;
     outline: none; transition: border-color .2s; margin-bottom: 14px;
@@ -97,7 +96,7 @@ body {
 .code-input:focus { border-color: var(--accent); }
 .name-input {
     width: 100%; padding: 12px 16px; border-radius: var(--radius2);
-    background: var(--card2); border: 1.5px solid var(--border);
+    background: var(--card2); border: 2px solid var(--card2);
     color: var(--text2); font-family: var(--sans); font-size: 15px;
     outline: none; transition: border-color .2s; margin-bottom: 20px;
 }
@@ -173,8 +172,8 @@ body {
     border-radius: var(--radius2); text-align: center;
     font-size: 14px; font-weight: 600;
 }
-.feedback-banner.show-correct { display: block; background: rgba(94,184,138,.12); color: var(--green); border: 1.5px solid var(--green); }
-.feedback-banner.show-wrong { display: block; background: rgba(224,112,112,.12); color: var(--red); border: 1.5px solid var(--red); }
+.feedback-banner.show-correct { display: block; background: var(--green); color: white; border: 2px solid var(--green); }
+.feedback-banner.show-wrong { display: block; background: var(--red); color:white ; border: 2px solid var(--red); }
 
 /* ── FIN ── */
 .score-big { font-family: var(--mono); font-size: 52px; font-weight: 500; color: var(--accent); margin-bottom: 8px; }

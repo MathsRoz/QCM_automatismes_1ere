@@ -1,0 +1,80 @@
+/* ═══════════════════════════════════════════════════════
+   question.css — Styles spécifiques à question.html
+   ═══════════════════════════════════════════════════════ */
+
+/* ─── MAIN ─── */
+main {
+  position: relative; z-index: 1;
+  max-width: 760px; margin: 0 auto;
+  padding: 36px 24px 80px;
+  display: flex; flex-direction: column; gap: 20px;
+  flex: 1;
+}
+
+/* ─── ACTIONS ─── */
+.actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+/* ─── VARIABLES ÉDITABLES ─── */
+.vars-editor {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  background: var(--card); border: 1px solid var(--border2);
+  border-radius: 10px; padding: 12px 16px;
+}
+.var-editor-item { display: flex; align-items: center; gap: 6px; }
+.var-editor-label { font-family: var(--mono); font-size: 12px; color: var(--accent); font-weight: 600; }
+.var-editor-range { font-size: 10px; color: var(--text3); }
+.var-editor-input {
+  width: 56px; padding: 4px 8px;
+  background: var(--card2); border: 1px solid var(--border2);
+  color: var(--text); border-radius: 6px;
+  font-family: var(--mono); font-size: 13px; font-weight: 500;
+  outline: none; text-align: center;
+}
+.var-editor-input:focus { border-color: rgba(79,142,247,.5); }
+
+/* ─── QUESTION ─── */
+.rendered-q { display: flex; flex-direction: column; gap: 20px; }
+.rendered-enonce { font-size: 18px; line-height: 2.1; }
+.rendered-answers { display: grid; gap: 12px; }
+.rendered-answer {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 20px; border-radius: 12px; border: 1px solid var(--border2);
+  background: var(--card2); font-size: 15px; line-height: 1.7;
+}
+.rendered-answer.correct { border-color: var(--green); background: rgba(52,211,153,.08); }
+.answer-letter-badge {
+  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 13px; font-weight: 600;
+  background: rgba(255,255,255,.06); border: 1px solid var(--border2);
+}
+.correct .answer-letter-badge { background: var(--green); border-color: var(--green); color: #000; }
+
+/* ─── TIRAGES ─── */
+.variants-row {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  padding-top: 20px; border-top: 1px solid var(--border2);
+}
+.variant-preview-box {
+  background: var(--card2); border: 1px solid var(--border2);
+  border-radius: 10px; padding: 16px 20px; margin-top: 14px;
+}
+.variant-preview-box .rendered-enonce { font-size: 15px; line-height: 1.9; }
+.variant-preview-box .rendered-answer { font-size: 13px; padding: 10px 14px; }
+
+/* ─── NOT FOUND ─── */
+.not-found {
+  text-align: center; padding: 60px 20px; color: var(--text3);
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.not-found .icon { font-size: 48px; opacity: .4; }
+.not-found code {
+  font-family: var(--mono); font-size: 14px;
+  background: var(--card); border: 1px solid var(--border2);
+  border-radius: 6px; padding: 4px 12px; color: var(--text2);
+}
+
+/* ─── META HEADER ─── */
+.q-meta { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.q-meta .id { font-family: var(--mono); font-weight: 600; }
+.q-meta .groupe { color: var(--text3); font-size: 12px; }

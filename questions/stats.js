@@ -133,7 +133,7 @@ const QUESTIONS_STATS = [
 
   enonce: function(v) {
     v.situation=[{A:50,B:20},{A:100/3,B:100/3},{A:50,B:25},{A:30,B:10}]
-    sit= v.situation[v.s]
+    const sit= v.situation[v.s]
 
     if (v._deduping) return '';
     return 'Sur '+v.n+' personnes présentes à une exposition, on distingue trois groupes : \\\\'

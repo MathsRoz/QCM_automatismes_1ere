@@ -14,6 +14,15 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.2/dist/peerjs.min.js"></script>
+    <!-- Banque de questions locale (reconstruction côté élève) -->
+    <script src="questions/utils.js"></script>
+    <script src="questions/svg-renderer.js"></script>
+    <script src="questions/calcul.js"></script>
+    <script src="questions/proportions.js"></script>
+    <script src="questions/evolutions.js"></script>
+    <script src="questions/fonctions.js"></script>
+    <script src="questions/stats.js"></script>
+    <script src="questions/proba.js"></script>
 </head>
 <body>
 
@@ -68,6 +77,7 @@ let myName = '';
 let totalQ = 0, qIdx = 0, score = 0;
 let selectedAnswer = null, answered = false;
 let timerInterval = null, timerRemaining = 0;
+let currentBonneIdx = null;
 
 // ─── NAVIGATION ────────────────────────────────────────
 function showScreen(id) {
@@ -143,16 +153,45 @@ function send(data) {
 function handleMessage(msg) {
     switch (msg.type) {
         case 'question': showQuestion(msg); break;
-        case 'reveal':   revealAnswers(msg.bonneReponse); break;
+        case 'reveal':   revealAnswers(msg); break;
         case 'end':      showEnd(msg.score, msg.total); break;
     }
 }
 
 function showQuestion(msg) {
-    const { index, total, enonce, reponses, duree } = msg;
+    const { index, total, id, vars, bonneIdx, duree } = msg;
     qIdx = index; totalQ = total;
     selectedAnswer = null; answered = false;
+    currentBonneIdx = bonneIdx;
 
+    // Retrouver le template dans la banque locale
+    const ALL_QUESTIONS = [
+        ...QUESTIONS_CALCUL, ...QUESTIONS_PROPORTIONS, ...QUESTIONS_EVOLUTIONS,
+        ...QUESTIONS_FONCTIONS, ...QUESTIONS_STATS, ...QUESTIONS_PROBA,
+    ];
+    const template = ALL_QUESTIONS.find(q => q.id === id);
+
+    let enonce, reponses;
+    if (template && vars) {
+        try {
+            const bonne = template.bonneReponse(vars);
+            const dist  = template.distracteurs(vars).slice(0, 3);
+            const all   = [bonne, ...dist];
+            // Reconstruire dans l'ordre envoyé par le prof (bonneIdx indique la position de la bonne)
+            reponses = [];
+            let distIdx = 0;
+            for (let i = 0; i < all.length; i++) {
+                reponses.push(i === bonneIdx ? bonne : dist[distIdx++]);
+            }
+            enonce = template.enonce(vars);
+        } catch(e) {
+            enonce = 'Erreur de reconstruction : ' + e.message;
+            reponses = [];
+        }
+    } else {
+        enonce = 'Question ' + (index + 1);
+        reponses = [];
+    }
 
     document.getElementById('qNum').textContent = 'Question ' + (index + 1) + ' / ' + total;
     buildContent(document.getElementById('qEnonce'), enonce);
@@ -164,14 +203,13 @@ function showQuestion(msg) {
         const btn = document.createElement('button');
         btn.className = 'ans-btn';
         btn.dataset.idx = i;
-        btn.setAttribute('data-raw', rep); // Stocker pour comparaison
         const letter = document.createElement('div');
         letter.className = 'ans-letter';
         letter.textContent = letters[i];
         const content = document.createElement('div');
         buildContent(content, rep);
         btn.appendChild(letter); btn.appendChild(content);
-        btn.onclick = () => selectAnswer(i, btn, rep);
+        btn.onclick = () => selectAnswer(i, btn);
         cont.appendChild(btn);
     });
 
@@ -188,35 +226,32 @@ function showQuestion(msg) {
     }, 100);
 }
 
-function selectAnswer(idx, btn, reponseText) {
+function selectAnswer(idx, btn) {
     if (answered) return;
     answered = true;
     selectedAnswer = idx;
     document.querySelectorAll('.ans-btn').forEach(b => { b.classList.remove('selected'); b.disabled = true; });
     btn.classList.add('selected');
-    send({ type: 'answer', index: qIdx, answerIdx: idx, answerText: reponseText, name: myName });
+    send({ type: 'answer', index: qIdx, answerIdx: idx, name: myName });
 }
 
-function revealAnswers(bonneReponse) {
+function revealAnswers(msg) {
     clearTimer();
+    const bonneIdx = msg.bonneIdx;
     const reponseEls = document.querySelectorAll('.ans-btn');
     reponseEls.forEach((btn, i) => {
         btn.disabled = true;
-        const raw = btn.getAttribute('data-raw') || '';
-        const isCorrect = raw === bonneReponse;
-        const isSelected = parseInt(btn.dataset.idx) === selectedAnswer;
-        
+        const isCorrect = i === bonneIdx;
+        const isSelected = i === selectedAnswer;
         if (isSelected) btn.classList.remove('selected');
-        
-        if (isCorrect) { 
-            btn.classList.add('correct'); 
-            if (isSelected) { score++; showFeedback(true); } 
-        } else if (isSelected) { 
-            btn.classList.add('wrong'); 
-            showFeedback(false); 
+        if (isCorrect) {
+            btn.classList.add('correct');
+            if (isSelected) { score++; showFeedback(true); }
+        } else if (isSelected) {
+            btn.classList.add('wrong');
+            showFeedback(false);
         }
     });
-
     if (selectedAnswer === null) showFeedback(null);
 }
 
@@ -244,7 +279,7 @@ function startTimer(duree) {
         updateTimerUI(timerRemaining, duree);
         if (timerRemaining <= 0) {
             clearTimer();
-            if (!answered) { answered = true; send({ type: 'answer', index: qIdx, answerIdx: null, answerText: null, name: myName }); }
+            if (!answered) { answered = true; send({ type: 'answer', index: qIdx, answerIdx: null, name: myName }); }
         }
     }, 1000);
 }

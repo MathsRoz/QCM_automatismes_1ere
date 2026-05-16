@@ -282,12 +282,20 @@ const QUESTIONS_PROBA = [
           ['\\dfrac{'+ (10+v.n)+'}{10}',Math.round((1+v.n/5)*10)/10,'0.'+v.n+'-1','\\dfrac{'+ (v.n+1)+'}{'+ (v.n)+'}']]
       
       return `Soit $A$ un événement, sa probabilité peut être égale à :`},
-    bonneReponse: (v) => `$`+v.t[0][v.s]+'$',
-    distracteurs: (v) => [
-      `$`+v.t[1][(v.s+1)%4]+'$',
-      `$`+v.t[1][(v.s+2)%4]+'$',
-      `$`+v.t[1][(v.s+3)%4]+'$'
-    ]
+    bonneReponse: (v) => {
+      const t=[['\\dfrac{'+ (10-v.n)+'}{10}', Math.round((1-v.n/10)*10)/10,'-(0.'+v.n+'-1)','\\dfrac{'+ (v.n)+'}{'+ (v.n+1)+'}'],
+               ['\\dfrac{'+ (10+v.n)+'}{10}',Math.round((1+v.n/5)*10)/10,'0.'+v.n+'-1','\\dfrac{'+ (v.n+1)+'}{'+ (v.n)+'}']];
+      return `$`+t[0][v.s]+'$';
+    },
+    distracteurs: (v) => {
+      const t=[['\\dfrac{'+ (10-v.n)+'}{10}', Math.round((1-v.n/10)*10)/10,'-(0.'+v.n+'-1)','\\dfrac{'+ (v.n)+'}{'+ (v.n+1)+'}'],
+               ['\\dfrac{'+ (10+v.n)+'}{10}',Math.round((1+v.n/5)*10)/10,'0.'+v.n+'-1','\\dfrac{'+ (v.n+1)+'}{'+ (v.n)+'}']];
+      return [
+        `$`+t[1][(v.s+1)%4]+'$',
+        `$`+t[1][(v.s+2)%4]+'$',
+        `$`+t[1][(v.s+3)%4]+'$'
+      ];
+    }
   },
 
   {

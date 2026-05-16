@@ -125,8 +125,8 @@ const QUESTIONS_EVOLUTIONS = [
     variables: { t1: { min: 10, max: 100, step: 10}, t2: { min: 10, max: 90, step:10 } },
     enonce: (v) => `Une hausse de $${v.t1}\\%$ puis une baisse de $${v.t2}\\%$ correspond à :`,
     bonneReponse: (v) => {
-      t = ((1 + v.t1 / 100) * (1 - v.t2 / 100) * 100 - 100).toFixed(0)
-      evo = (t<0) ? "baisse" : "hausse";
+      const t = ((1 + v.t1 / 100) * (1 - v.t2 / 100) * 100 - 100).toFixed(0);
+      const evo = (t<0) ? "baisse" : "hausse";
       return `Une ${evo} de $ ${Math.abs(t)}\\%$`},
     distracteurs: (v) => [
       `Une ${(v.t1 - v.t2<0) ? "baisse" : "hausse"} de $${Math.abs(v.t1 - v.t2)}\\%$`,
@@ -142,14 +142,17 @@ const QUESTIONS_EVOLUTIONS = [
     desc : 'Taux d\'évolution réciproque',
     variables: { t: { min: -50, max: 25, step:75 } },
     enonce: (v) => {
-      signe = (v.t<0)? "" :"+";
+      const signe = (v.t<0)? "" :"+";
       return `Le taux d'évolution réciproque d'une évolution de $${v.t}\\%$ est :`},
     bonneReponse: (v) => `$${+parseFloat(1 / (1 + v.t / 100) * 100 - 100).toFixed(2)}\\%$`,
-    distracteurs: (v) => [
-      (v.t<0)? `$`+ signe + `${-v.t}\\%$`:`$${-v.t}\\%$`,
-      `$`+ signe + `${v.t}\\%$`,
-      `$`+ signe + `${+parseFloat(100 / (100 + v.t)).toFixed(2)}\\%$`
-    ]
+    distracteurs: (v) => {
+      const signe = (v.t<0)? "" :"+";
+      return [
+        (v.t<0)? `$`+ signe + `${-v.t}\\%$`:`$${-v.t}\\%$`,
+        `$`+ signe + `${v.t}\\%$`,
+        `$`+ signe + `${+parseFloat(100 / (100 + v.t)).toFixed(2)}\\%$`
+      ];
+    }
   },
 
   // ── Coefficient multiplicateur → taux ──

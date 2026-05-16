@@ -16,7 +16,7 @@
 #btnLive {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 7px 16px; border-radius: 99px;
-  background: var(--card); border: 2px solid var(--border2);
+  background: var(--card); border: 2px solid var(--card);
   color: var(--text); font-family: var(--sans); font-size: 13px; font-weight: 500;
   cursor: pointer; transition: all .2s; white-space: nowrap;
 }
@@ -106,7 +106,7 @@
   padding:14px 18px; border-radius:12px;
   background:var(--bg-live); border:2px solid var(--black-live);
   font-size:3vh; font-family:var(--sans);
-  transition: .35s ease; position:relative;
+  transition: .1s ease; position:relative;
 }
 .lv-ans-letter {
   position: absolute;
@@ -117,13 +117,13 @@
   display: flex; align-items: center; justify-content: center;
   font-family: var(--mono); font-size: 1.2rem; font-weight: 600;
   color: #ffffff; transition: all .2s;
-  z-index: 1;
+  z-index: 1; 
   top: -10px;
   left: -10px;
 }
 .lv-ans-text { flex:1; position:relative; z-index:1; text-align: center; color: var(--black-live);}
 .lv-ans-text .katex { font-size:1.2em !important; }
-.lv-ans.correct { border-color:var(--green-live); box-shadow: 0px 0px 2vmin var(--green-live); }
+.lv-ans.correct { border:2px solid var(--green-live); background-color: rgba(163, 255, 163, 0.336); }
 .lv-ans.correct .lv-ans-letter { background:var(--green-live); border-color:var(--green-live); color:#fff; }
 
 /* ── Panel droit (timer + compteur uniquement) ── */
@@ -152,8 +152,8 @@
 .lv-ctrl-btn { padding:10px 24px; border-radius:99px; font-family:var(--sans); font-size:13px; font-weight:600; cursor:pointer; transition:all .2s; border:none; }
 .lv-ctrl-primary { background:var(--accent-live); color:#fff; }
 .lv-ctrl-primary:hover { filter:brightness(1.1); }
-.lv-ctrl-secondary { background:var(--card); border:1.5px solid var(--border2); color:var(--text2); }
-.lv-ctrl-secondary:hover { border-color:var(--accent-live); color:var(--text); }
+.lv-ctrl-secondary { background:var(--green-live); color:white; }
+.lv-ctrl-secondary:hover { border-color:var(--accent-live); }
 .lv-ctrl-danger { background:var(--red-live); color: white; }
 .lv-ctrl-danger:hover {background: var(--red-light-live); }
 .lv-ctrl-btn:disabled { opacity:.4; cursor:not-allowed; }
@@ -171,28 +171,34 @@
 .lv-podium-row {
   display:flex; align-items:center; gap:14px;
   padding:12px 18px; border-radius:12px;
-
+  font-size: 15px;
   animation: lvFadeIn .3s ease both;
   color: var(--black-live);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.103);
+
+  border-bottom: 3px solid rgb(235, 235, 235);
 }
-.lv-podium-row:nth-child(1) { border:3px solid rgb(245, 197, 66); 
-                              background: rgb(245, 197, 66); 
+.lv-podium-row:nth-child(1) { border-bottom: 3px solid rgb(196, 145, 6);
+                              background: rgb(230, 170, 6); 
                               color: white;  
                               font-weight: 700;
+                              font-size: 20px;
                               animation-delay:.05s; }
-.lv-podium-row:nth-child(2) { border:3px solid rgb(122, 127, 133);
+.lv-podium-row:nth-child(2) { border-bottom: 3px solid rgb(91, 95, 100);
                               background: rgb(122, 127, 133); 
                               color: white;  
-                              font-weight: 700;  animation-delay:.1s; }
-.lv-podium-row:nth-child(3) { border:3px solid rgb(205, 128, 50);
+                              font-weight: 600; 
+                              font-size: 20px;
+                               animation-delay:.1s; }
+.lv-podium-row:nth-child(3) { border-bottom: 3px solid rgb(148, 92, 37);
                               background: rgb(205, 128, 50); 
                               color: white;  
-                              font-weight: 700; animation-delay:.15s; }
+                              font-weight: 600; 
+                              font-size: 20px;
+                              animation-delay:.15s; }
 .lv-podium-row:nth-child(n+4) { animation-delay:.2s; }
-.lv-podium-medal { font-size:20px; width:28px; text-align:center; flex-shrink:0; }
-.lv-podium-name { flex:1; font-size:20px; }
-.lv-podium-score { font-family:var(--mono); font-size:14px; color:var(--green); font-weight:500; }
+.lv-podium-medal {  width:28px; text-align:center; flex-shrink:0; }
+.lv-podium-name { flex:1;  }
+.lv-podium-score { font-family:var(--sans);   }
 /* Top 5 (supprimé du panel droit) */
 .lsp-top-row { display:none; }
 

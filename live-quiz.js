@@ -52,8 +52,8 @@
 
       <div id="liveWaitScreen">
         <div class="lv-wait-code" id="lvWaitCode"></div>
-        <img id="lvWaitQr" class="lv-wait-qr" src="" alt="QR">
-        <div class="lv-wait-label">Scanne le QR ou entre le code sur <strong>eleve.html</strong></div>
+        <img id="lvWaitQr" onclick="LiveQuiz.openEleve()" class="lv-wait-qr" src="" alt="QR">
+        <div class="lv-wait-label">Scanne le QR ou entre le code sur <strong>${buildStudentUrl()}</strong></div>
         <div class="lv-wait-count">Élèves connectés : <strong id="lvWaitCount">0</strong></div>
         <div class="lv-wait-chips" id="lvWaitChips"></div>
       </div>
@@ -81,7 +81,9 @@
     btn.id = 'btnLive'; btn.className = 'btn';
     btn.innerHTML = '<span class="live-dot"></span> Classe live';
     btn.onclick = openLiveModal;
-    actions.appendChild(btn);
+    const exportBtn = actions.querySelector('button:last-child');
+    if (exportBtn) actions.insertBefore(btn, exportBtn);
+    else actions.appendChild(btn);
   }
 
   // ═══════════════════════════════════════════════════════
@@ -119,7 +121,8 @@
       liveState.active = true; liveState.qIdx = -1;
       const s = getQCMState();
       liveState.totalQ = s ? s.generatedQuestions.length : 0;
-      document.getElementById('btnLive').classList.add('live-on');
+      const btnLiveEl = document.getElementById('btnLive');
+      if (btnLiveEl) btnLiveEl.classList.add('live-on');
     });
     peer.on('connection', conn => {
       const student = { conn, name:'?', answers:[], answered:false };
@@ -140,10 +143,17 @@
       }
     }
     if (msg.type === 'answer') {
-      student.answers[liveState.qIdx] = { idx:msg.answerIdx, text:msg.answerText };
+      student.answers[liveState.qIdx] = { idx:msg.answerIdx, timeLeft: liveState.timerRemaining, duree: liveState.currentDuree };
       student.answered = true;
       refreshStudentsAll();
       refreshStatsBars(liveState.revealed);
+      // Révéler automatiquement si tous les élèves ont répondu
+      if (!liveState.revealed && connections.length > 0 &&
+          connections.every(s => s.answered)) {
+        revealCurrent();
+        btnstate = 'answer';
+        updateNextBtn();
+      }
     }
   }
 
@@ -263,7 +273,7 @@
     const state = getQCMState();
     const q = state.generatedQuestions[liveState.qIdx];
     const bonne = q.bonneReponse.replace(/%%TIKZ[\s\S]*?%%ENDTIKZ%%/g, '');
-    broadcast({ type:'reveal', bonneReponse:bonne });
+    broadcast({ type:'reveal', bonneIdx: q.bonneIdx });
 
     document.querySelectorAll('#liveAnswers .lv-ans').forEach((el, i) => {
       if (q.reponses[i].replace(/%%TIKZ[\s\S]*?%%ENDTIKZ%%/g,'') === bonne)
@@ -276,21 +286,22 @@
 
   function endSession() {
     clearProTimer();
-    btnstate = 'end';
     // Envoyer les scores finaux aux élèves
     const state = getQCMState();
     connections.forEach(s => {
-      let sc = 0;
-      if (state) state.generatedQuestions.forEach((q, qi) => {
-        const b = q.bonneReponse.replace(/%%TIKZ[\s\S]*?%%ENDTIKZ%%/g,'');
-        if (s.answers[qi] && s.answers[qi].text === b) sc++;
-      });
+      const sc = computeScore(s, state, liveState.totalQ - 1);
       s.conn.send({ type:'end', score:sc, total:liveState.totalQ });
     });
-    // Afficher le podium final seulement s'il y a des élèves, sinon fermer directement
-    if (connections.length > 0) {
+
+    if (btnstate !== 'end') {
+      // Premier appel : afficher le podium final
+      btnstate = 'end';
       showPodium(true);
+      // Changer le bouton Quitter en "Fermer"
+      const quitBtn = document.querySelector('#liveTopBar .lv-ctrl-danger');
+      if (quitBtn) quitBtn.textContent = 'Fermer';
     } else {
+      // Deuxième appel : quitter vraiment
       closeSessionUI();
     }
   }
@@ -300,6 +311,7 @@
   // ═══════════════════════════════════════════════════════
   function startProTimer(duree) {
     liveState.timerRemaining = duree;
+    liveState.currentDuree = duree;
     updateTimerUI(duree, duree);
     liveState.timerInterval = setInterval(() => {
       liveState.timerRemaining--;
@@ -340,10 +352,59 @@
     let sc = 0;
     for (let qi = 0; qi <= upToQ && qi < state.generatedQuestions.length; qi++) {
       const q = state.generatedQuestions[qi];
-      const bonne = q.bonneReponse.replace(/%%TIKZ[\s\S]*?%%ENDTIKZ%%/g, '');
-      if (student.answers[qi] && student.answers[qi].text === bonne) sc++;
+      const ans = student.answers[qi];
+      if (ans && ans.idx === q.bonneIdx) {
+        // Entre 100 (réponse lente) et 200 (réponse immédiate)
+        const duree = ans.duree || 60;
+        const ratio = duree > 0 ? Math.max(0, Math.min(1, ans.timeLeft / duree)) : 0;
+        sc += Math.round(100 + ratio * 100);
+      }
     }
     return sc;
+  }
+
+  function exportResultsCSV() {
+    const state = getQCMState();
+    if (!state || !connections.length) return;
+    const qs = state.generatedQuestions;
+    const total = qs.length;
+
+    // En-tête
+    const headers = ['Élève', 'Score', ...qs.map((q, i) => 'Q' + (i + 1)),'Note'];
+    const rows = [headers];
+
+    connections.forEach(s => {
+      const row = [s.name];
+      let total = 0;
+      let note = 0;
+      qs.forEach((q, qi) => {
+        const ans = s.answers[qi];
+        const correct = ans && ans.idx === q.bonneIdx;
+        if (correct) {
+          const duree = ans.duree || 60;
+          const ratio = duree > 0 ? Math.max(0, Math.min(1, ans.timeLeft / duree)) : 0;
+          const pts = Math.round(100 + ratio * 100);
+          total += pts;
+          note +=1;
+          row.push(pts);
+        } else {
+          row.push('0');
+        }
+      });
+      row.splice(1, 0, total + ' pts');
+      row.push(note);
+      rows.push(row);
+    });
+
+    const csv = rows.map(r => r.map(cell =>
+      '"' + String(cell).replace(/"/g, '""') + '"'
+    ).join(';')).join('\n');
+
+    const date = new Date().toLocaleDateString('fr-FR').replace(/\//g, '-');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' }));
+    a.download = 'resultats-live-' + date + '.csv';
+    a.click();
   }
 
   function closeSessionUI() {
@@ -351,7 +412,8 @@
     connections = [];
     liveState = { active:false, qIdx:-1, totalQ:0, timerInterval:null, timerRemaining:0, revealed:false };
     btnstate = 'start';
-    document.getElementById('btnLive').classList.remove('live-on');
+    const btnLiveEl = document.getElementById('btnLive');
+    if (btnLiveEl) btnLiveEl.classList.remove('live-on');
     document.getElementById('liveOverlay').classList.remove('open');
     document.getElementById('liveWaitScreen').classList.remove('show');
     document.getElementById('livePodium').classList.remove('show');
@@ -360,6 +422,8 @@
     document.getElementById('lspTimer').textContent='';
     document.getElementById('lvQnum').textContent='';
     document.getElementById('lvBtnNext').textContent='Suivant';
+    const quitBtn = document.querySelector('#liveTopBar .lv-ctrl-danger');
+    if (quitBtn) quitBtn.textContent = 'Quitter';
     if (typeof showToast === 'function') showToast('Session terminée.');
   }
 
@@ -384,12 +448,25 @@
 
     document.getElementById('lvPodiumSubtitle').textContent = subtitle;
 
+    // Bouton export CSV (podium final uniquement)
+    const existingExport = document.getElementById('lvExportBtn');
+    if (existingExport) existingExport.remove();
+    if (isFinal) {
+      const exportBtn = document.createElement('button');
+      exportBtn.id = 'lvExportBtn';
+      exportBtn.className = 'lv-ctrl-btn lv-ctrl-secondary';
+      exportBtn.style.cssText = 'margin:12px auto 0;display:block;';
+      exportBtn.innerHTML = 'Exporter les résultats (CSV)';
+      exportBtn.onclick = exportResultsCSV;
+      document.getElementById('livePodium').appendChild(exportBtn);
+    }
+
     const list = document.getElementById('lvPodiumList');
     list.innerHTML = ranked.map((s, i) => `
       <div class="lv-podium-row">
         <div class="lv-podium-medal">${medals[i]}</div>
         <div class="lv-podium-name">${escHtml(s.name)}</div>
-        <div class="lv-podium-score">${s.score}/${upTo + 1}</div>
+        <div class="lv-podium-score">${s.score} pts</div>
       </div>`).join('');
     document.getElementById('livePodium').classList.add('show');
   }
@@ -434,16 +511,22 @@
 
   function buildQMsg(q, idx) {
     return {
-      type:'question', index:idx, total:liveState.totalQ,
-      enonce: q.enonce.replace(/%%TIKZ[\s\S]*?%%ENDTIKZ%%/g,''),
-      reponses: q.reponses.map(r => r.replace(/%%TIKZ[\s\S]*?%%ENDTIKZ%%/g,'')),
-      bonneReponse: q.bonneReponse.replace(/%%TIKZ[\s\S]*?%%ENDTIKZ%%/g,''),
+      type: 'question',
+      index: idx,
+      total: liveState.totalQ,
+      id: q.templateId,
+      vars: q.vars,
+      bonneIdx: q.bonneIdx,
       duree: q.duree || 60,
     };
   }
 
   function buildStudentUrl() {
     return location.origin + location.pathname.replace(/[^/]*$/, '') + STUDENT_PAGE + '?code=' + roomCode;
+  }
+
+  function openEleve(){
+    window.open(buildStudentUrl(), '_blank');
   }
 
   function generateCode() {
@@ -489,7 +572,7 @@
   // ═══════════════════════════════════════════════════════
   // API PUBLIQUE + INIT
   // ═══════════════════════════════════════════════════════
-  window.LiveQuiz = { openLiveModal, nextQuestion, revealCurrent, endSession, btnSlide, copyLink, copyCode };
+  window.LiveQuiz = { openLiveModal, nextQuestion, revealCurrent, endSession, btnSlide, copyLink, copyCode, openEleve };
 
   function init() {
     injectHTML();
